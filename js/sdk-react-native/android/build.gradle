@@ -1,0 +1,45 @@
+buildscript {
+  repositories { google(); mavenCentral() }
+  dependencies { classpath("com.android.tools.build:gradle:8.7.2") }
+}
+
+apply plugin: "com.android.library"
+apply plugin: "org.jetbrains.kotlin.android"
+
+android {
+  namespace "app.armenus.sdk"
+  compileSdk 35
+
+  defaultConfig {
+    // Scene Viewer and ARCore both require 24; Filament's Vulkan path prefers
+    // higher but degrades to GLES on older devices rather than failing.
+    minSdk 24
+  }
+
+  buildFeatures { buildConfig false }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+  kotlinOptions { jvmTarget = "17" }
+}
+
+repositories { google(); mavenCentral() }
+
+dependencies {
+  implementation "com.facebook.react:react-android"
+
+  /*
+   * SceneView wraps Google's Filament, which is the renderer Scene Viewer and
+   * Google Maps use. Chosen over raw Filament because it already handles the
+   * parts that are tedious and easy to get wrong — glTF/GLB loading, the
+   * render-thread lifecycle, IBL setup and Android's surface teardown.
+   *
+   * Deliberately NOT ARCore/ARSceneView: placement goes through Scene Viewer,
+   * the system AR app, so this package never links the ARCore SDK and never
+   * asks for the camera permission. That keeps the AAR small and keeps a host
+   * app's Play Store data-safety declaration unchanged by installing us.
+   */
+  implementation "io.github.sceneview:sceneview:2.3.0"
+}

@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Armenus example",
+    "slug": "armenus-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "ios": {
+      "bundleIdentifier": "app.armenus.example",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "app.armenus.example"
+    },
+    "plugins": ["expo-dev-client"]
+  }
+}

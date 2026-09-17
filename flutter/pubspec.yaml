@@ -1,0 +1,35 @@
+name: armenus
+description: >-
+  Render restaurant dishes in 3D and place them on a real table in AR.
+  Native rendering on both platforms — SceneKit and AR Quick Look on iOS,
+  Filament and Scene Viewer on Android. No WebView.
+version: 0.1.0
+homepage: https://armenus.app
+repository: https://github.com/armenusapp/sdk
+issue_tracker: https://github.com/armenusapp/sdk/issues
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # The only dependency, and only for the HTTP client. Everything else is
+  # platform channels and Flutter's own widgets — a package that renders 3D
+  # should not drag a dependency tree into someone's app.
+  http: ^1.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: app.armenus.flutter
+        pluginClass: ArmenusPlugin
+      ios:
+        pluginClass: ArmenusPlugin

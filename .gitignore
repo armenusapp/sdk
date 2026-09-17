@@ -1,0 +1,16 @@
+.DS_Store
+.build/
+.swiftpm/
+Package.resolved
+.gradle/
+.kotlin/
+build/
+local.properties
+.idea/
+*.iml
+node_modules/
+dist/
+.dart_tool/
+.env
+.env.*
+!.env.example

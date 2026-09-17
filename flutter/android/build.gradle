@@ -1,0 +1,45 @@
+group 'app.armenus.flutter'
+version '0.1.0'
+
+buildscript {
+  repositories { google(); mavenCentral() }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:8.7.2'
+    classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21'
+  }
+}
+
+rootProject.allprojects {
+  repositories { google(); mavenCentral() }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+  namespace 'app.armenus.flutter'
+  compileSdk 35
+
+  // Scene Viewer and ARCore both require 24.
+  defaultConfig { minSdk 24 }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+  kotlinOptions { jvmTarget = '17' }
+}
+
+dependencies {
+  /*
+   * SceneView wraps Google's Filament — the renderer behind Scene Viewer and
+   * Google Maps. Chosen over raw Filament because it already handles GLB
+   * loading, the render-thread lifecycle, IBL setup and surface teardown.
+   *
+   * Note what is NOT here: the ARCore SDK. Placement goes through Scene
+   * Viewer, a separate system app, so this plugin never links ARCore for
+   * rendering and never needs the camera permission — which keeps a host app's
+   * Play Store data-safety declaration unchanged by adding us.
+   */
+  implementation 'io.github.sceneview:sceneview:2.3.0'
+}

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Armenus — plain JavaScript example</title>
+
+<!--
+  No build step, no framework, no bundler.
+
+  @armenus/sdk-core is loaded straight from a CDN as an ES module, and
+  <model-viewer> alongside it. This is the whole integration for a restaurant
+  that wants its dishes on an existing website it does not want to rebuild.
+-->
+<script type="module" src="https://ga.jspm.io/npm:@google/model-viewer@4.3.1/dist/model-viewer.min.js"></script>
+
+<style>
+  :root { color-scheme: light; --rule: #e4dfd5; --muted: #6b645c; }
+  body {
+    margin: 0; padding: 2rem 1.25rem 5rem;
+    font-family: system-ui, sans-serif; line-height: 1.6;
+    background: #faf8f4; color: #1c1a17;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1 { font-size: 1.75rem; letter-spacing: -.02em; margin: 0 0 1.5rem; }
+  model-viewer {
+    width: 100%; aspect-ratio: 4 / 3; display: block;
+    background: #f0ece4; border-radius: .75rem;
+  }
+  .row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-top: 1rem; }
+  .price { font-variant-numeric: tabular-nums; }
+  .muted { color: var(--muted); font-size: .875rem; }
+  .ar-btn {
+    position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+    min-height: 44px; padding: 0 1.25rem;
+    border: none; border-radius: 999px;
+    background: #c0392b; color: #fff;
+    font: inherit; font-weight: 600; cursor: pointer;
+  }
+  .status { padding: 3rem 0; text-align: center; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Today&rsquo;s dish</h1>
+  <div id="app"><p class="status">Loading&hellip;</p></div>
+</main>
+
+<script type="module">
+import { ArmenusClient, resolvePresentation } from "https://ga.jspm.io/npm:@armenus/sdk-core@0.1.0/dist/index.js";
+
+/*
+ * A publishable key is public by construction — it ships in this file, and
+ * anyone can read it. That is fine: it is read-only, scoped to one restaurant,
+ * quota-limited and revocable. Never put a secret `ak_` key here; the client
+ * throws if you try, because it would otherwise work.
+ */
+const armenus = new ArmenusClient({ publishableKey: "pk_live_replace_me" });
+
+const app = document.getElementById("app");
+
+function money(cents, currency) {
+  return (cents / 100).toLocaleString(undefined, { style: "currency", currency });
+}
+
+try {
+  // config() first: it is the only call that tells a revoked key apart from an
+  // empty menu, and those need very different responses.
+  const config = await armenus.config();
+  const merchant = config.merchants[0];
+  if (!merchant) throw new Error("This key can't see any merchants.");
+
+  const { items } = await armenus.items(merchant.id, { withModel: true, limit: 1 });
+  const item = items[0];
+  if (!item?.model) throw new Error("No dish with a ready 3D model yet.");
+
+  /*
+   * On the web, always "web-other" — never "ios"/"android". Those mean the
+   * NATIVE SDKs, where SceneKit cannot read a GLB and the format rules bite.
+   * In a browser, <model-viewer> reaches iOS Quick Look from `ios-src` itself.
+   */
+  const { ar } = resolvePresentation({
+    platform: "web-other",
+    model: item.model,
+    hasWebXr: await navigator.xr?.isSessionSupported("immersive-ar").catch(() => false) ?? false,
+    isMobileWeb: /iPhone|iPad|Android/i.test(navigator.userAgent),
+  });
+
+  app.innerHTML = "";
+
+  const viewer = document.createElement("model-viewer");
+  viewer.src = item.model.glbUrl;
+  if (item.model.usdzUrl) viewer.setAttribute("ios-src", item.model.usdzUrl);
+  if (item.model.posterUrl) viewer.poster = item.model.posterUrl;
+  viewer.alt = item.name;
+  viewer.setAttribute("ar", "");
+  viewer.setAttribute("ar-modes", "webxr scene-viewer quick-look");
+  // "fixed", not "auto": the mesh is already scaled to the dish's real size,
+  // which is the entire question the diner is asking.
+  viewer.setAttribute("ar-scale", "fixed");
+  viewer.setAttribute("camera-controls", "");
+  viewer.setAttribute("touch-action", "none");
+  viewer.setAttribute("camera-orbit", item.model.viewSettings.cameraOrbit);
+  viewer.setAttribute("shadow-intensity", String(item.model.viewSettings.shadowIntensity));
+  if (item.model.viewSettings.autoRotate) viewer.setAttribute("auto-rotate", "");
+
+  const button = document.createElement("button");
+  button.slot = "ar-button";
+  button.className = "ar-btn";
+  button.textContent = "View on your table";
+  viewer.append(button);
+
+  app.append(viewer);
+
+  const row = document.createElement("div");
+  row.className = "row";
+  row.innerHTML = `<strong></strong><span class="price"></span>`;
+  row.querySelector("strong").textContent = item.name;
+  row.querySelector(".price").textContent = money(item.priceCents, merchant.currency);
+  app.append(row);
+
+  if (ar.reason) {
+    const note = document.createElement("p");
+    note.className = "muted";
+    note.textContent = ar.reason;
+    app.append(note);
+  }
+} catch (error) {
+  const message = error?.isAuthError
+    ? "That publishable key was rejected. Check it in the dashboard."
+    : error?.message ?? "Something went wrong.";
+  app.innerHTML = `<p class="status"></p>`;
+  app.querySelector(".status").textContent = message;
+}
+</script>
+</body>
+</html>

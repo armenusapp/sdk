@@ -1,0 +1,65 @@
+{
+  "name": "@armenus/sdk-core",
+  "version": "0.1.0",
+  "description": "Framework-agnostic client for the Armenus embed API. Zero runtime dependencies.",
+  "license": "MIT",
+  "homepage": "https://armenus.app/docs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armenusapp/sdk.git",
+    "directory": "js/sdk-core"
+  },
+  "bugs": {
+    "url": "https://github.com/armenusapp/sdk/issues"
+  },
+  "keywords": [
+    "armenus",
+    "restaurant",
+    "menu",
+    "3d",
+    "ar",
+    "glb",
+    "usdz"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "default": "./dist/react/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.ts",
+    "!src/**/*.test-d.ts",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "oxlint": "^1.76.0",
+    "typescript": "7.0.2",
+    "vitest": "^4.1.10",
+    "@types/react": "^19.2.0",
+    "react": "19.2.8"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  }
+}

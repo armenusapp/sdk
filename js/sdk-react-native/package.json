@@ -1,0 +1,70 @@
+{
+  "name": "@armenus/sdk-react-native",
+  "version": "0.1.0",
+  "description": "Native 3D and AR dish rendering for React Native. SceneKit + AR Quick Look on iOS, Filament + Scene Viewer on Android.",
+  "license": "MIT",
+  "homepage": "https://armenus.app/docs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armenusapp/sdk.git",
+    "directory": "js/sdk-react-native"
+  },
+  "bugs": {
+    "url": "https://github.com/armenusapp/sdk/issues"
+  },
+  "keywords": [
+    "armenus",
+    "restaurant",
+    "menu",
+    "3d",
+    "ar",
+    "react-native",
+    "scenekit",
+    "quick-look",
+    "scene-viewer"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "android",
+    "ios",
+    "armenus-sdk-react-native.podspec",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "experimental"
+  },
+  "dependencies": {
+    "@armenus/sdk-core": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.76"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "oxlint": "^1.76.0",
+    "react": "19.2.8",
+    "typescript": "7.0.2",
+    "react-native": "0.83.10"
+  },
+  "codegenConfig": {
+    "name": "ArmenusSdkSpec",
+    "type": "all",
+    "jsSrcsDir": "src/specs",
+    "android": {
+      "javaPackageName": "app.armenus.sdk"
+    }
+  }
+}

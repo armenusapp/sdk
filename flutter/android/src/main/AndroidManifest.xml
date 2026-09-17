@@ -1,0 +1,17 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <!--
+    No permissions. Scene Viewer holds the camera permission in its own
+    process, so a host app adding this plugin does not inherit one.
+
+    `queries` is required on Android 11+ regardless: without it the intent
+    cannot resolve Scene Viewer and every AR launch fails silently, even where
+    AR works perfectly.
+  -->
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.VIEW" />
+      <data android:scheme="https" android:host="arvr.google.com" />
+    </intent>
+    <package android:name="com.google.ar.core" />
+  </queries>
+</manifest>
