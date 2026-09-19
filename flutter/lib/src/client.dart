@@ -42,7 +42,7 @@ class ArmenusClient {
     this.timeout = const Duration(seconds: 8),
     this.retries = 2,
     http.Client? httpClient,
-  })  : _http = httpClient ?? http.Client() {
+  }) : _http = httpClient ?? http.Client() {
     if (!publishableKey.startsWith('pk_')) {
       /*
        * Thrown at construction, not on first request. The common integration
@@ -69,15 +69,18 @@ class ArmenusClient {
       EmbedConfig.fromJson(await _get('/embed/config'));
 
   /// One dish, by Armenus id.
-  Future<EmbedItem> item(String itemId) async =>
-      EmbedItem.fromJson(await _get('/embed/items/${Uri.encodeComponent(itemId)}'));
+  Future<EmbedItem> item(String itemId) async => EmbedItem.fromJson(
+        await _get('/embed/items/${Uri.encodeComponent(itemId)}'),
+      );
 
   /// One dish, by your own identifier — so you never have to store ours.
   Future<EmbedItem> itemByRef(String merchantId, String externalRef) async =>
-      EmbedItem.fromJson(await _get(
-        '/embed/merchants/${Uri.encodeComponent(merchantId)}'
-        '/items/by-ref/${Uri.encodeComponent(externalRef)}',
-      ));
+      EmbedItem.fromJson(
+        await _get(
+          '/embed/merchants/${Uri.encodeComponent(merchantId)}'
+          '/items/by-ref/${Uri.encodeComponent(externalRef)}',
+        ),
+      );
 
   /// Every dish on a merchant.
   Future<List<EmbedItem>> items(
@@ -105,7 +108,9 @@ class ArmenusClient {
   /// that pops in and one that trickles. Capped at 50 by the API.
   Future<List<EmbedItem>> itemsByIds(List<String> ids) async {
     if (ids.isEmpty) return const [];
-    final json = await _get('/embed/items?ids=${ids.map(Uri.encodeComponent).join(',')}');
+    final json = await _get(
+      '/embed/items?ids=${ids.map(Uri.encodeComponent).join(',')}',
+    );
     return (json['items'] as List)
         .map((i) => EmbedItem.fromJson((i as Map).cast<String, dynamic>()))
         .toList();
@@ -138,7 +143,8 @@ class ArmenusClient {
         String code = 'http_error';
         String message = 'Request failed with status ${response.statusCode}';
         try {
-          final body = (jsonDecode(response.body) as Map).cast<String, dynamic>();
+          final body =
+              (jsonDecode(response.body) as Map).cast<String, dynamic>();
           code = body['error'] as String? ?? code;
           message = body['message'] as String? ?? message;
         } catch (_) {}

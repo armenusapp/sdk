@@ -3,16 +3,12 @@ import ARKit
 import QuickLook
 import UIKit
 
-/// AR placement, via the system viewer.
+/// Opens a dish in Apple's Quick Look viewer for AR placement.
 ///
-/// There is no ARKit session code here and there should not be.
-/// `QLPreviewController` in AR mode *is* ARKit: plane detection, real-world
-/// scale, people occlusion, contact shadows and the drag, rotate and scale
-/// gestures every iPhone user already knows from Safari and Messages.
-///
-/// The one thing Quick Look will not do is fetch a remote file, which is why
-/// the cache exists and why ``prefetch(_:)`` is worth calling before the button
-/// is tapped.
+/// The SDK downloads the USDZ file to its local cache, then supplies that file
+/// to QLPreviewController. Quick Look provides the AR interface; this SDK does
+/// not implement a custom AR session. Call prefetch before a likely interaction
+/// if you want to start the download earlier.
 public enum ArmenusAR {
   /// Whether this handset can do AR at all.
   ///
@@ -23,8 +19,7 @@ public enum ArmenusAR {
     ARWorldTrackingConfiguration.isSupported
   }
 
-  /// Warms the cache so the AR button opens instantly instead of stalling for
-  /// two seconds while the user wonders whether the tap registered.
+  /// Downloads and caches a USDZ file ahead of use to reduce the wait when AR opens.
   @discardableResult
   public static func prefetch(_ usdzURL: String) async throws -> URL {
     try await ArmenusModelCache.shared.file(for: usdzURL)

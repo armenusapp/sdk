@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "React components and hooks for rendering Armenus dishes in 3D and AR on the web.",
   "license": "MIT",
-  "homepage": "https://armenus.app/docs",
+  "homepage": "https://developers.armenus.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/armenusapp/sdk.git",
@@ -46,14 +46,14 @@
     "*.css"
   ],
   "dependencies": {
-    "@armenus/sdk-core": "^0.1.0"
+    "@armenus/sdk-core": "^0.1.0",
+    "@google/model-viewer": "^4.3.1"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "@google/model-viewer": "^4.3.1",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "oxlint": "^1.76.0",

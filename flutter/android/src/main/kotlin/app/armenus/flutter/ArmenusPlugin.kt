@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.google.ar.core.ArCoreApk
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -74,33 +73,15 @@ class ArmenusPlugin : FlutterPlugin, ActivityAware, MethodChannel.MethodCallHand
     }
   }
 
-  /**
-   * `ArCoreApk.checkAvailability` answers both questions that matter: is the
-   * device on Google's supported list, and is ARCore installed. A version
-   * check answers neither. The transient states resolve asynchronously, so
-   * this polls briefly rather than reporting "no" for a device still deciding.
-   */
+  /** Checks whether the system Scene Viewer can handle the AR handoff. */
   private fun isArAvailable(result: MethodChannel.Result) {
-    try {
-      val availability = ArCoreApk.getInstance().checkAvailability(context)
-      if (availability.isTransient) {
-        io.execute {
-          var state = availability
-          var waited = 0
-          while (state.isTransient && waited < 2_000) {
-            Thread.sleep(200)
-            waited += 200
-            state = ArCoreApk.getInstance().checkAvailability(context)
-          }
-          result.success(state.isSupported)
-        }
-      } else {
-        result.success(availability.isSupported)
-      }
-    } catch (error: Throwable) {
-      // A device without Play services throws rather than reporting false.
-      result.success(false)
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://arvr.google.com/scene-viewer/1.0")).apply {
+      setPackage("com.google.ar.core")
     }
+    val available = runCatching {
+      intent.resolveActivity(context.packageManager) != null
+    }.getOrDefault(false)
+    result.success(available)
   }
 
   private fun prefetch(url: String?, result: MethodChannel.Result) {

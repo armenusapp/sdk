@@ -11,6 +11,18 @@
     "android": {
       "package": "app.armenus.example"
     },
-    "plugins": ["expo-dev-client"]
+    "plugins": [
+      "expo-dev-client",
+      "expo-asset",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "kotlinVersion": "2.0.21"
+          }
+        }
+      ],
+      "./plugins/with-kotlin-classpath"
+    ]
   }
 }

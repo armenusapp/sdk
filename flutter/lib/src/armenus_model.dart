@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 import 'armenus_ar.dart';
@@ -48,7 +49,6 @@ class _ArmenusModelState extends State<ArmenusModel> {
   bool _loaded = false;
   bool _failed = false;
   bool _presenting = false;
-  String? _prefetched;
 
   @override
   void initState() {
@@ -61,35 +61,22 @@ class _ArmenusModelState extends State<ArmenusModel> {
   @override
   void didUpdateWidget(ArmenusModel oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.item?.model?.id != widget.item?.model?.id) {
+    if (oldWidget.item?.model?.id != widget.item?.model?.id ||
+        oldWidget.item?.model?.glbUrl != widget.item?.model?.glbUrl ||
+        oldWidget.item?.model?.usdzUrl != widget.item?.model?.usdzUrl) {
       // A recycled card now showing a different dish must not keep the old
       // one's load state, or the poster never reappears while the new mesh
       // downloads.
       _loaded = false;
       _failed = false;
-      _prefetched = null;
-      _maybePrefetch();
     }
   }
 
   Presentation get _presentation => resolvePresentation(
         model: widget.item?.model,
         arAvailable: _arAvailable,
+        isIosOverride: defaultTargetPlatform == TargetPlatform.iOS,
       );
-
-  void _maybePrefetch() {
-    final presentation = _presentation;
-    if (!presentation.arSupported) return;
-
-    final url = defaultTargetPlatform == TargetPlatform.iOS
-        ? widget.item?.model?.usdzUrl
-        : widget.item?.model?.glbUrl;
-    if (url == null) return;
-
-    ArmenusAr.prefetch(url).then((path) {
-      if (mounted && path != null) setState(() => _prefetched = path);
-    });
-  }
 
   Future<void> _enterAr() async {
     final item = widget.item;
@@ -137,9 +124,17 @@ class _ArmenusModelState extends State<ArmenusModel> {
                 const ColoredBox(color: Color(0xFFF4F2F3)),
                 if (renderable && !_failed && settings != null)
                   _NativeModelView(
-                    // The prefetched local path when we have one: loading off
-                    // disk skips the network entirely on a scroll-back.
-                    source: _prefetched ?? presentation.inlineUrl!,
+                    // Native creation parameters are read once. Recreate the
+                    // view when its model or display settings change.
+                    key: ValueKey((
+                      presentation.inlineUrl,
+                      settings.cameraOrbit,
+                      settings.exposure,
+                      settings.shadowIntensity,
+                      settings.autoRotate,
+                      widget.interactionEnabled,
+                    )),
+                    source: presentation.inlineUrl!,
                     settings: settings,
                     interactionEnabled: widget.interactionEnabled,
                     onLoad: () {
@@ -157,7 +152,8 @@ class _ArmenusModelState extends State<ArmenusModel> {
                   _Poster(
                     url: presentation.inlineKind == InlineKind.poster
                         ? presentation.inlineUrl
-                        : widget.item?.model?.posterUrl ?? widget.item?.imageUrl,
+                        : widget.item?.model?.posterUrl ??
+                            widget.item?.imageUrl,
                     spinning: renderable && !_failed && !_loaded,
                   ),
 
@@ -221,8 +217,9 @@ class _Poster extends StatelessWidget {
 /// `AndroidViewSurface`), which is what lets a Filament surface composite
 /// correctly with Flutter widgets drawn above it — the AR button here sits on
 /// top of the canvas, and virtual-display mode gets that wrong.
-class _NativeModelView extends StatelessWidget {
+class _NativeModelView extends StatefulWidget {
   const _NativeModelView({
+    super.key,
     required this.source,
     required this.settings,
     required this.interactionEnabled,
@@ -230,31 +227,48 @@ class _NativeModelView extends StatelessWidget {
     required this.onError,
   });
 
-  static const String _viewType = 'app.armenus/model-view';
-
   final String source;
   final ModelViewSettings settings;
   final bool interactionEnabled;
   final VoidCallback onLoad;
   final void Function(String message) onError;
 
+  @override
+  State<_NativeModelView> createState() => _NativeModelViewState();
+}
+
+class _NativeModelViewState extends State<_NativeModelView> {
+  static const String _viewType = 'app.armenus/model-view';
+  MethodChannel? _channel;
+
+  @override
+  void dispose() {
+    _channel?.setMethodCallHandler(null);
+    super.dispose();
+  }
+
   Map<String, dynamic> get _params => {
-        'source': source,
-        'cameraOrbitTheta': settings.orbitDegrees(0, 0),
-        'cameraOrbitPhi': settings.orbitDegrees(1, 75),
-        'exposure': settings.exposure,
-        'shadowIntensity': settings.shadowIntensity,
-        'autoRotate': settings.autoRotate,
-        'interactionEnabled': interactionEnabled,
+        'source': widget.source,
+        'cameraOrbitTheta': widget.settings.orbitDegrees(0, 0),
+        'cameraOrbitPhi': widget.settings.orbitDegrees(1, 75),
+        'exposure': widget.settings.exposure,
+        'shadowIntensity': widget.settings.shadowIntensity,
+        'autoRotate': widget.settings.autoRotate,
+        'interactionEnabled': widget.interactionEnabled,
       };
 
   void _wireChannel(int id) {
-    MethodChannel('app.armenus/model-view/$id').setMethodCallHandler((call) async {
+    if (!mounted) return;
+    _channel = MethodChannel('app.armenus/model-view/$id');
+    _channel!.setMethodCallHandler((call) async {
+      if (!mounted) return;
       switch (call.method) {
         case 'onModelLoad':
-          onLoad();
+          widget.onLoad();
         case 'onModelError':
-          onError((call.arguments as Map?)?['message'] as String? ?? 'Load failed');
+          widget.onError(
+            (call.arguments as Map?)?['message'] as String? ?? 'Load failed',
+          );
       }
     });
   }
@@ -275,7 +289,7 @@ class _NativeModelView extends StatelessWidget {
       surfaceFactory: (context, controller) => AndroidViewSurface(
         controller: controller as AndroidViewController,
         hitTestBehavior: PlatformViewHitTestBehavior.opaque,
-        gestureRecognizers: interactionEnabled
+        gestureRecognizers: widget.interactionEnabled
             ? const <Factory<OneSequenceGestureRecognizer>>{}
             // With no recognisers claimed, vertical drags fall through to the
             // enclosing scrollable — which is what a card in a feed wants.
@@ -290,7 +304,9 @@ class _NativeModelView extends StatelessWidget {
           creationParamsCodec: const StandardMessageCodec(),
           onFocus: () => params.onFocusChanged(true),
         );
-        controller.addOnPlatformViewCreatedListener(params.onPlatformViewCreated);
+        controller.addOnPlatformViewCreatedListener(
+          params.onPlatformViewCreated,
+        );
         controller.addOnPlatformViewCreatedListener(_wireChannel);
         return controller..create();
       },

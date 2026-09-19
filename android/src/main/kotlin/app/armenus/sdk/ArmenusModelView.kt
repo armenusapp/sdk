@@ -195,7 +195,7 @@ class ArmenusModelView @JvmOverloads constructor(
         // and doing it inline drops frames in whatever list the card is
         // scrolling in, the most visible performance mistake on this path.
         val bytes = withContext(Dispatchers.IO) {
-          ArmenusModelCache.fileBlocking(context, source).readBytes()
+          ArmenusGlb.prepare(ArmenusModelCache.fileBlocking(context, source).readBytes())
         }
         if (currentSource != source) return@launch
 

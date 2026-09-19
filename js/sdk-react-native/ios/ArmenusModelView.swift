@@ -15,14 +15,14 @@ import UIKit
  gates the preview on iOS and not only the AR button.
  */
 @objc(ArmenusModelView)
-public final class ArmenusModelView: UIView {
+public class ArmenusModelView: UIView {
 
   private let sceneView = SCNView()
   private var modelNode: SCNNode?
   private var currentSource: String?
 
-  @objc public var onModelLoad: (() -> Void)?
-  @objc public var onModelError: ((String) -> Void)?
+  @objc public var onLoad: (() -> Void)?
+  @objc public var onError: ((String) -> Void)?
 
   /* -- props -------------------------------------------------------------- */
 
@@ -100,7 +100,7 @@ public final class ArmenusModelView: UIView {
           if let local {
             self.loadScene(from: local)
           } else {
-            self.onModelError?(error?.localizedDescription ?? "Download failed")
+            self.onError?(error?.localizedDescription ?? "Download failed")
           }
         }
       }
@@ -124,7 +124,7 @@ public final class ArmenusModelView: UIView {
         }
       } catch {
         DispatchQueue.main.async {
-          self?.onModelError?(error.localizedDescription)
+          self?.onError?(error.localizedDescription)
         }
       }
     }
@@ -160,7 +160,7 @@ public final class ArmenusModelView: UIView {
     applyAutoRotate()
 
     sceneView.isPlaying = window != nil && autoRotate
-    onModelLoad?()
+    onLoad?()
   }
 
   /* -- framing ------------------------------------------------------------ */

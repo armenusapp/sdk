@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Framework-agnostic client for the Armenus embed API. Zero runtime dependencies.",
   "license": "MIT",
-  "homepage": "https://armenus.app/docs",
+  "homepage": "https://developers.armenus.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/armenusapp/sdk.git",
@@ -40,7 +40,9 @@
     "!src/**/*.test.ts",
     "!src/**/*.test-d.ts",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "react.js",
+    "react.d.ts"
   ],
   "publishConfig": {
     "access": "public"

@@ -7,13 +7,13 @@ Native 3D and AR dish rendering for React Native. **No WebView.**
 | **iOS**     | SceneKit (`SCNView`), USDZ  | AR Quick Look (`QLPreviewController`) |
 | **Android** | Filament via SceneView, GLB | Scene Viewer intent                   |
 
-```bash
-# Published under the `experimental` dist-tag until validated on devices.
-npm install @armenus/sdk-react-native@experimental
-cd ios && pod install
-```
+npm publication is pending. Obtain the matching versioned integration archives.
+See the [installation guide](https://github.com/armenusapp/sdk/blob/main/docs/getting-started.md).
 
-Android: add `ArmenusPackage()` to your `MainApplication` package list.
+React Native autolinks the native package. Run `pod install` in your iOS project
+and rebuild both native apps. Do not register `ArmenusPackage()` a second time
+when Android autolinking is enabled. Android requires API 24 or later, Java 17
+and Kotlin 2.0.21 or later.
 
 ```tsx
 import {
@@ -28,23 +28,24 @@ export function Dish({ itemId }: { itemId: string }) {
 }
 ```
 
-## Why no ARKit or ARCore rendering code
+## How the 3D and AR views work
 
-Because neither platform needs it, and writing it would land somewhere worse.
+The dish appears inside your app as a rotatable 3D model. When the guest taps
+the AR button, the SDK opens Apple's Quick Look viewer on iOS or Google's Scene
+Viewer on Android. Those viewers provide the interface for placing the dish in
+the camera view on a supported device. Your app does not need to build that
+AR interface itself.
 
-`QLPreviewController` in AR mode **is ARKit** — plane detection, real-world scale, people occlusion, contact shadows, and the drag/rotate/scale gestures every iPhone user already knows from Safari and Messages. It is about thirty lines to present. Scene Viewer is the same story on ARCore, launched by an intent.
-
-Hand-rolling an `ARSCNView` equivalent means reimplementing all of that, diverging from the AR interaction users have seen everywhere else, and maintaining it per platform forever.
-
-What the native code here _does_ own is the part the system does not give you: a renderer for the inline preview, and the disk cache that feeds both paths.
+The SDK also downloads model files and keeps local copies so the previews can
+reuse them. Explicit prefetching starts a download ahead of time; it is optional.
 
 ## Permissions
 
-**This SDK adds none.** Placement runs in the system AR viewer, a separate app that holds the camera permission itself. Your Play Store data-safety declaration and your iOS privacy manifest are unchanged by installing this.
+Android declares the normal `INTERNET` permission to download menu data and model files; it does not show a permission prompt. The SDK does not request camera access. AR opens in the system viewer.
 
 ## Performance
 
-- **Prefetch.** `ArmenusModel` warms the cache as soon as it knows AR is offerable. Quick Look cannot read a remote URL, so the download happens either way — only its timing is yours to choose, and choosing early is the difference between an AR button that opens instantly and one that stalls for two seconds while the user wonders whether the tap registered. Call `ArmenusNative.prefetch(url)` yourself for rows about to scroll into view.
+- **Prefetch.** The built-in viewer handles normal model loading. You can call `ArmenusNative.prefetch(url)` to download a model ahead of an expected interaction. This can reduce waiting when the guest opens it; it does not guarantee an instant load.
 - **Parsing is off the main thread** on both platforms. A textured dish is a few MB, and decoding it inline drops frames in whatever list the card is sitting in.
 - **Renderers pause when off screen.** Each `SCNView` owns a `CADisplayLink`; a feed with twenty cards all rendering off screen drains the battery and drops the scroll below 60fps for nothing visible. Android drives rotation from `Choreographer`, so it is tied to actual frame delivery rather than a timer that keeps firing while throttled.
 - **`interactionEnabled={false}` inside a `FlatList`.** On a phone the two gesture systems fight, and a card that swallows vertical drags makes the whole feed feel stuck.
@@ -56,6 +57,18 @@ SceneKit cannot open a GLB. So on iOS, a model whose USDZ conversion has not fin
 
 `presentation.ar.blockedOnConversion` tells you the difference between "still being made" (resolves in a minute or two) and genuinely unavailable.
 
-## Status
+## Native builds
 
-The TypeScript side builds and type-checks in the Armenus workspace. The Swift and Kotlin sources are complete but have **not been compiled or run** against a React Native toolchain, which is why the package is published under the `experimental` tag rather than `latest`. Pin the exact version, and expect device validation before `1.0`.
+Use a native React Native build or an Expo development build. Expo Go cannot load this package’s native modules. After installing the package, run CocoaPods for iOS and rebuild the app. The included Expo example configures Kotlin 2.0.21 for the Android renderer and pins its Gradle plugin version. In an existing Android host, set both `kotlinVersion` and the buildscript dependency `classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")`; an unversioned dependency can select an older compiler. Keep the core and React Native packages on the same version.
+
+## Design and integration documentation
+
+See [developer documentation](https://developers.armenus.app), the
+[design guide](https://github.com/armenusapp/sdk/blob/main/docs/customization.md), and
+[troubleshooting](https://github.com/armenusapp/sdk/blob/main/docs/troubleshooting.md).
+
+The component exposes outer `style`, `arLabel`, `interactionEnabled`, `footer`,
+`onEnterAr` and `onError`. The internal stage, button and note currently use fixed
+styles. Outer `style` does not theme those elements. A universal native theme
+object is not part of the API. Run CocoaPods for iOS in a native development build;
+this native module is not available in a stock Expo Go runtime.

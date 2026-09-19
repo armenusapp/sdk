@@ -1,7 +1,7 @@
-export { ArmenusModel, type ArmenusModelProps } from "./ArmenusModel.js";
+export { ArmenusModel, type ArmenusModelProps } from "./ArmenusModel";
 
 /** Cache and AR control, for hosts that want to manage either explicitly. */
-export { default as ArmenusNative } from "./specs/NativeArmenusAr.js";
+export { default as ArmenusNative } from "./specs/NativeArmenusAr";
 
 /* Shared React bindings — one implementation, common with the web SDK. */
 export {

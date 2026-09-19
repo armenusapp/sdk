@@ -1,14 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-  <!--
-    No permissions are declared, and that is intentional. Placement runs in
-    Scene Viewer, a separate system app that holds the camera permission
-    itself, so a host app installing this SDK does not inherit a camera
-    permission it then has to justify in its Play Store data-safety form.
-
-    `queries` is required on Android 11+ regardless: without it
-    `resolveActivity` cannot see Scene Viewer and every AR launch silently
-    falls back, even on devices where AR works perfectly.
-  -->
+  <!-- Network access is required to fetch menu data and model files. -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <!-- Scene Viewer owns camera access. No camera permission is requested. -->
   <queries>
     <intent>
       <action android:name="android.intent.action.VIEW" />

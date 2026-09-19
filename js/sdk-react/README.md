@@ -2,9 +2,8 @@
 
 Render Armenus dishes in 3D and AR on the web.
 
-```bash
-npm install @armenus/sdk-react
-```
+npm publication is pending. Obtain the matching versioned integration archives.
+See the [installation guide](https://github.com/armenusapp/sdk/blob/main/docs/getting-started.md).
 
 ```tsx
 import { ArmenusProvider, ArmenusModel, useArmenusItem } from "@armenus/sdk-react";
@@ -36,10 +35,40 @@ The library is ~300 kB and is imported **on mount, never at module scope**, so i
 - **`ar-scale` is `fixed`.** The mesh is already scaled to the dish's real dimensions, which is the entire question a diner is asking. `auto` hands that back to the user as a pinch gesture.
 - **`touch-action` is `none`.** With `pan-y` the page claims every vertical drag, so dragging on the model scrolls the page instead of tilting the dish — the first thing anyone tries. The stage is a fixed-height box, so the page still scrolls from outside it.
 - **Styles are optional.** `styles.css` is plain CSS with everything overridable through `--armenus-*` custom properties. Pass `className` and style it yourself if you would rather; it ships no utility-class dependency, since this has to work in Tailwind, CSS modules, styled-components and nothing at all.
-- **Driving AR yourself.** `<ArmenusModel>` renders its own AR button into model-viewer's slot. To use your own, take a ref to the element and call `activateAR()`.
+- **Driving AR yourself.** The stock component does not forward a viewer ref. For direct `activateAR()` control, use the core client with your own model-viewer element.
 
 ## Hooks
 
 `useArmenusItem`, `useArmenusItemByRef`, `useArmenusItems`, `useArmenusConfig` — each returns `{ data, loading, error }`.
 
 All of them accept `null` for their id and treat it as "not resolved yet" rather than an error, so a list does not flash an error on first paint. Requests abort on unmount _and_ on id change, so a fast scroll settles on the response belonging to the current id rather than whichever landed last.
+
+## Design and integration documentation
+
+See [developer documentation](https://developers.armenus.app), the
+[design guide](https://github.com/armenusapp/sdk/blob/main/docs/customization.md), and
+[troubleshooting](https://github.com/armenusapp/sdk/blob/main/docs/troubleshooting.md).
+
+### Styling example
+
+Import your overrides after `@armenus/sdk-react/styles.css` and pass
+`className="restaurant-viewer"` to `ArmenusModel`:
+
+```css
+.armenus-viewer.restaurant-viewer {
+  --armenus-radius: 20px;
+  --armenus-surface: #f3f5ec;
+  --armenus-accent: #244d3b;
+  --armenus-on-accent: #ffffff;
+  --armenus-muted: #53614c;
+  --armenus-font: inherit;
+}
+.restaurant-viewer .armenus-stage {
+  aspect-ratio: 4 / 3;
+}
+```
+
+`arLabel` changes the AR button copy, `alt` changes the accessible description,
+and `footer(presentation)` adds content below the capability note. Your app owns
+the surrounding dish card and menu layout. Dashboard themes do not automatically
+style SDK viewers. CSS cannot restyle the system AR interface.

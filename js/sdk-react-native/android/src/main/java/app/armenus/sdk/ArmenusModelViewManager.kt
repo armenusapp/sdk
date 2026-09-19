@@ -80,6 +80,11 @@ class ArmenusModelViewManager : SimpleViewManager<ArmenusModelView>() {
     view.interactionEnabled = value
   }
 
+  override fun onDropViewInstance(view: ArmenusModelView) {
+    view.dispose()
+    super.onDropViewInstance(view)
+  }
+
   override fun getExportedCustomDirectEventTypeConstants(): MutableMap<String, Any> =
     MapBuilder.builder<String, Any>()
       .put("onModelLoad", MapBuilder.of("registrationName", "onModelLoad"))

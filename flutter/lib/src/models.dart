@@ -5,6 +5,8 @@
 /// take a code-generation step, or a JSON-serialisation dependency, to read
 /// six response shapes we control.
 
+library;
+
 /// USDZ readiness. Gates iOS entirely — see [EmbedModel.usdzUrl].
 enum UsdzStatus { pending, processing, ready, failed }
 
@@ -182,7 +184,8 @@ class EmbedItem {
         ),
         model: json['model'] == null
             ? null
-            : EmbedModel.fromJson((json['model'] as Map).cast<String, dynamic>()),
+            : EmbedModel.fromJson(
+                (json['model'] as Map).cast<String, dynamic>()),
       );
 }
 
@@ -201,7 +204,8 @@ class EmbedConfig {
         scope: json['scope'] as String,
         ownerName: json['ownerName'] as String,
         merchants: (json['merchants'] as List)
-            .map((m) => EmbedMerchant.fromJson((m as Map).cast<String, dynamic>()))
+            .map((m) =>
+                EmbedMerchant.fromJson((m as Map).cast<String, dynamic>()))
             .toList(),
       );
 }

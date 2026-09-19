@@ -216,7 +216,7 @@ public final class ArmenusModelView: UIView {
           self.onModelError?(error?.localizedDescription ?? "Download failed")
           return
         }
-        self.loadScene(from: local, settings: settings)
+        self.loadScene(from: local, source: source, settings: settings)
       }
     }
   }
@@ -235,20 +235,21 @@ public final class ArmenusModelView: UIView {
     sceneView.isHidden = true
   }
 
-  private func loadScene(from url: URL, settings: ModelViewSettings) {
+  private func loadScene(from url: URL, source: String, settings: ModelViewSettings) {
     // Parsed off the main thread. A textured dish is a few MB of USDZ and
     // decoding it inline drops frames in whatever list the card sits in.
     DispatchQueue.global(qos: .userInitiated).async { [weak self] in
       do {
         let scene = try SCNScene(url: url, options: [.checkConsistency: false])
         DispatchQueue.main.async {
-          guard let self, self.currentSource != nil else { return }
+          guard let self, self.currentSource == source else { return }
           self.install(scene: scene, settings: settings)
         }
       } catch {
         DispatchQueue.main.async {
-          self?.spinner.stopAnimating()
-          self?.onModelError?(error.localizedDescription)
+          guard let self, self.currentSource == source else { return }
+          self.spinner.stopAnimating()
+          self.onModelError?(error.localizedDescription)
         }
       }
     }

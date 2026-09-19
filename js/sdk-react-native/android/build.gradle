@@ -5,6 +5,12 @@ buildscript {
 
 apply plugin: "com.android.library"
 apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
+
+react {
+  libraryName = "ArmenusSdkSpec"
+  codegenJavaPackageName = "app.armenus.sdk"
+}
 
 android {
   namespace "app.armenus.sdk"

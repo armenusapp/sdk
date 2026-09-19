@@ -23,6 +23,12 @@ let package = Package(
     .target(name: "ArmenusCore", path: "swift/Sources/ArmenusCore"),
     .target(name: "Armenus", dependencies: ["ArmenusCore"], path: "swift/Sources/Armenus"),
     .testTarget(
+      name: "ArmenusTests",
+      dependencies: ["Armenus"],
+      path: "swift/Tests/ArmenusTests",
+      resources: [.copy("Fixtures")]
+    ),
+    .testTarget(
       name: "ArmenusCoreTests",
       dependencies: ["ArmenusCore"],
       path: "swift/Tests/ArmenusCoreTests"

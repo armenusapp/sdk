@@ -76,7 +76,7 @@ class DishScreen extends StatelessWidget {
               model == null
                   ? 'This dish does not have a 3D model yet.'
                   : 'Shown at actual size — '
-                      '${(model.physicalSizeM * 100).round()} cm across.',
+                        '${(model.physicalSizeM * 100).round()} cm across.',
               style: const TextStyle(fontSize: 13, color: Color(0xFF6B645C)),
             ),
 

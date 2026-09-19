@@ -1,29 +1,14 @@
 import type { TurboModule } from "react-native";
 import { TurboModuleRegistry } from "react-native";
 
-/**
- * The AR handoff, and the disk cache that feeds it.
- *
- * Deliberately small. Neither platform needs us to write an AR engine: iOS has
- * AR Quick Look (which is ARKit — plane detection, real-world scale, people
- * occlusion, contact shadows, drag and rotate gestures) and Android has Scene
- * Viewer (the same, on ARCore). Both take a file and a size. Reimplementing
- * either would be months of work to arrive somewhere worse, and would drift
- * from what the platform does everywhere else the user has seen AR.
- *
- * What the module DOES own is getting the file there. Quick Look will not read
- * a remote URL — it needs a local one — so a download has to happen either way,
- * and once it does the cache is free and is where the real performance win is:
- * the second view of a dish starts instantly instead of pulling 1–2 MB again.
- */
+/** Opens the system AR viewer and manages downloaded model files. */
 export interface Spec extends TurboModule {
   /**
    * Whether this handset can do AR at all.
    *
-   * iOS: ARKit world-tracking support (A9 and later). Android: ARCore
-   * installed and the device on Google's supported list. Must be called before
-   * offering an AR button — an AR button on a handset without ARCore opens the
-   * Play Store instead of the camera, which reads as a broken app.
+   * iOS checks AR world-tracking support. Android checks whether the system
+   * Scene Viewer is installed and can handle the handoff. Scene Viewer may
+   * show its 3D fallback if AR is unavailable.
    */
   isArAvailable(): Promise<boolean>;
 
@@ -42,7 +27,7 @@ export interface Spec extends TurboModule {
    *
    * `physicalSizeM` and `arScale` both apply and are different things: the
    * first is how big the dish is, the second a correction the restaurant set.
-   * Resolves when the viewer is dismissed, so a caller can restore its own UI.
+   * Resolves when dismissed on iOS, or after launching the viewer on Android.
    */
   presentAr(options: {
     /** USDZ on iOS, GLB on Android. The caller picks; the platforms differ. */

@@ -10,4 +10,10 @@ export 'src/capability.dart'
     show ArMode, InlineKind, Presentation, resolvePresentation;
 export 'src/client.dart' show ArmenusClient, ArmenusException;
 export 'src/models.dart'
-    show EmbedConfig, EmbedItem, EmbedMerchant, EmbedModel, ModelViewSettings, UsdzStatus;
+    show
+        EmbedConfig,
+        EmbedItem,
+        EmbedMerchant,
+        EmbedModel,
+        ModelViewSettings,
+        UsdzStatus;
