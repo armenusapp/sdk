@@ -2,6 +2,8 @@ package app.armenus.flutter
 
 import android.content.Context
 import android.view.Choreographer
+import android.view.MotionEvent
+import android.widget.FrameLayout
 import android.view.View
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MessageCodec
@@ -10,6 +12,7 @@ import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
 import io.github.sceneview.SceneView
 import io.github.sceneview.node.ModelNode
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -50,6 +53,13 @@ class ArmenusFlutterModelView(
 ) : PlatformView {
 
   private val sceneView = SceneView(context)
+  private val container = object : FrameLayout(context) {
+    override fun onInterceptTouchEvent(event: MotionEvent): Boolean =
+      params["interactionEnabled"] == false
+    override fun onTouchEvent(event: MotionEvent): Boolean = false
+  }.apply {
+    addView(sceneView, FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT))
+  }
   private val channel = MethodChannel(messenger, "app.armenus/model-view/$viewId")
   private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
   private var modelNode: ModelNode? = null
@@ -64,7 +74,7 @@ class ArmenusFlutterModelView(
     if (source.isNotEmpty()) load(source, context)
   }
 
-  override fun getView(): View = sceneView
+  override fun getView(): View = container
 
   private fun load(source: String, context: Context) {
     scope.launch {
@@ -81,17 +91,16 @@ class ArmenusFlutterModelView(
           } else {
             File(source)
           }
-          file.readBytes()
+          ArmenusGlb.prepare(file.readBytes())
         }
 
         val instance = sceneView.modelLoader.createModelInstance(ByteBuffer.wrap(bytes))
-        val node = ModelNode(modelInstance = instance).apply {
-          // Normalised to a unit cube so camera distance means the same thing
-          // for an espresso cup and a sharing platter. Real-world scale is the
-          // AR viewer's job, not the preview's.
-          scaleToUnitCube()
-          centerOrigin()
-        }
+        val node = ModelNode(
+          modelInstance = instance,
+          autoAnimate = false,
+          scaleToUnits = 1.0f,
+          centerOrigin = io.github.sceneview.math.Position(0f, 0f, 0f),
+        )
 
         sceneView.addChildNode(node)
         modelNode = node
@@ -99,6 +108,8 @@ class ArmenusFlutterModelView(
         if (autoRotate) startSpin()
 
         channel.invokeMethod("onModelLoad", null)
+      } catch (error: CancellationException) {
+        throw error
       } catch (error: Throwable) {
         channel.invokeMethod(
           "onModelError",
@@ -155,6 +166,8 @@ class ArmenusFlutterModelView(
     spinCallback = null
     channel.setMethodCallHandler(null)
     scope.cancel()
+    modelNode?.let { sceneView.removeChildNode(it); it.destroy() }
+    modelNode = null
     sceneView.destroy()
   }
 }

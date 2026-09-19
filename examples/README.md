@@ -1,7 +1,9 @@
 # Examples
 
-Complete, runnable projects for each SDK. Each one is self-contained — copy the
-directory, add a publishable key, run it.
+Runnable projects for the web and cross-platform SDKs. Follow each example’s
+README to install its SDK dependency, generate native projects where needed,
+and configure a publishable key. Native Swift and Kotlin setup examples are in
+their [platform guides](https://developers.armenus.app).
 
 | Example                          | Stack                   | Renders with        |
 | -------------------------------- | ----------------------- | ------------------- |
@@ -38,4 +40,4 @@ Never put a secret `ak_` key in an example; the SDKs throw if you try.
 Deliberately. It compiles against the local SDK on every build, so a broken
 public API cannot ship unnoticed. The native examples stay out — they would
 drag an Expo and a Flutter toolchain into `pnpm install` for everyone, and they
-are meant to be copied wholesale rather than run from here.
+have their own toolchains and setup instructions.

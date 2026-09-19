@@ -119,9 +119,9 @@ export class ArmenusClient {
     signal?: AbortSignal,
   ): Promise<EmbedItemList> {
     const query = new URLSearchParams();
-    if (options.withModel) query.set("withModel", "true");
-    if (options.limit !== undefined) query.set("limit", String(options.limit));
-    if (options.offset !== undefined) query.set("offset", String(options.offset));
+    if (options.withModel) query.append("withModel", "true");
+    if (options.limit !== undefined) query.append("limit", String(options.limit));
+    if (options.offset !== undefined) query.append("offset", String(options.offset));
 
     const suffix = query.toString() ? `?${query.toString()}` : "";
     return this.request<EmbedItemList>(
@@ -154,6 +154,7 @@ export class ArmenusClient {
     let lastError: ArmenusError | undefined;
 
     for (let attempt = 0; attempt < this.retries; attempt += 1) {
+      if (signal?.aborted) throw new ArmenusError(0, "cancelled", "Request cancelled");
       try {
         return await this.attempt<T>(path, signal);
       } catch (error) {

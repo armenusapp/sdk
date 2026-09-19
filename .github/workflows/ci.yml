@@ -1,6 +1,6 @@
 name: CI
 
-# Builds every native SDK on every sync, and cuts a GitHub Release for tags.
+# Builds Swift, Android and Flutter on every sync, and cuts a GitHub Release for tags.
 # This file is generated from the Armenus monorepo (scripts/public-sdk/ci.yml).
 
 on:
@@ -22,8 +22,11 @@ jobs:
         run: |
           swift build
           swift test
-      - name: Compile the iOS module for the simulator
-        run: xcodebuild -scheme Armenus -destination 'generic/platform=iOS Simulator' -quiet build
+      - name: Test the iOS renderer and client in the simulator
+        shell: bash
+        run: |
+          simulator_id=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; devices=json.load(sys.stdin)["devices"]; print(next(d["udid"] for group in devices.values() for d in group if d["name"].startswith("iPhone")))')
+          xcodebuild -scheme Armenus-Package -destination "platform=iOS Simulator,id=$simulator_id" -quiet test
 
   android:
     runs-on: ubuntu-24.04
@@ -44,9 +47,54 @@ jobs:
           path: android/build/outputs/aar/*.aar
           if-no-files-found: error
 
+  flutter:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.47.5"
+          channel: stable
+          cache: true
+      - name: Analyze and test the Flutter package
+        working-directory: flutter
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test
+      - name: Generate the native example projects
+        working-directory: examples/flutter
+        run: flutter create --platforms=android,ios --project-name armenus_example .
+      - name: Build the Android example
+        if: runner.os == 'Linux'
+        working-directory: examples/flutter
+        run: flutter build apk --debug
+      - name: Build the iOS simulator example
+        if: runner.os == 'macOS'
+        working-directory: examples/flutter
+        run: flutter build ios --simulator --debug
+      - name: Exercise the native Flutter plugin in the iOS simulator
+        if: runner.os == 'macOS'
+        working-directory: examples/flutter
+        shell: bash
+        run: |
+          simulator_id=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; devices=json.load(sys.stdin)["devices"]; print(next(d["udid"] for group in devices.values() for d in group if d["name"].startswith("iPhone")))')
+          xcrun simctl boot "$simulator_id" || true
+          xcrun simctl bootstatus "$simulator_id" -b
+          flutter test integration_test/native_smoke_test.dart -d "$simulator_id"
+
   release:
     if: startsWith(github.ref, 'refs/tags/v')
-    needs: [swift, android]
+    needs: [swift, android, flutter]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:

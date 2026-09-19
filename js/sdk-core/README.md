@@ -12,8 +12,14 @@ import { ArmenusClient } from "@armenus/sdk-core";
 
 const armenus = new ArmenusClient({ publishableKey: "pk_..." });
 
-const item = await armenus.itemByRef(merchantId, "SKU-1234");
-console.log(item.model?.glbUrl, item.model?.usdzUrl);
+const config = await armenus.config();
+// A "merchant" is a restaurant. Choose one this key can access.
+const restaurant = config.merchants[0];
+if (restaurant) {
+  const result = await armenus.items(restaurant.id, { withModel: true });
+  const item = result.items[0];
+  if (item) console.log(item.model?.glbUrl, item.model?.usdzUrl);
+}
 ```
 
 ## Keys

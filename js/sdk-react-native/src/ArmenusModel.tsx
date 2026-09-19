@@ -15,8 +15,8 @@ import {
   type StyleProp,
   type ViewStyle,
 } from "react-native";
-import NativeArmenusAr from "./specs/NativeArmenusAr.js";
-import ArmenusModelView from "./specs/ArmenusModelViewNativeComponent.js";
+import NativeArmenusAr from "./specs/NativeArmenusAr";
+import ArmenusModelView from "./specs/ArmenusModelViewNativeComponent";
 
 export interface ArmenusModelProps {
   /** The dish to render. Pass the result of `useArmenusItem`. */
@@ -98,6 +98,12 @@ export function ArmenusModel({
   const inline = presentation.inline;
   const arUrl = Platform.OS === "ios" ? item?.model?.usdzUrl : item?.model?.glbUrl;
 
+  // A recycled card needs fresh loading/error state for its next model.
+  useEffect(() => {
+    setLoaded(false);
+    setFailed(false);
+  }, [item?.model?.id, item?.model?.glbUrl, item?.model?.usdzUrl]);
+
   /* -- prefetch ----------------------------------------------------------- */
 
   useEffect(() => {
@@ -151,6 +157,7 @@ export function ArmenusModel({
       <View style={styles.stage}>
         {canRenderMesh ? (
           <ArmenusModelView
+            key={inline.url}
             style={StyleSheet.absoluteFill}
             source={inline.url}
             {...(item?.model?.posterUrl ? { posterUrl: item.model.posterUrl } : {})}

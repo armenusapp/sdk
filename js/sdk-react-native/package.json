@@ -29,6 +29,7 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "react-native": "./src/index.ts",
       "default": "./dist/index.js"
     }
   },
@@ -66,5 +67,6 @@
     "android": {
       "javaPackageName": "app.armenus.sdk"
     }
-  }
+  },
+  "react-native": "./src/index.ts"
 }

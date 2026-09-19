@@ -6,13 +6,13 @@ selection or checkout workflow. The SDK does not submit restaurant orders.
 
 ## 1. Choose a platform and installation method
 
-| Platform           | Installation                                                                                     | Validation boundary                                                |
-| ------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| JavaScript / React | Obtain the matching `0.1.0` integration package archives. npm publication is pending.            | Build and type checks run in the workspace.                        |
-| React Native       | Obtain the core and React Native archives; install native dependencies in a native build.        | Experimental; native device-toolchain validation is pending.       |
-| Flutter            | Git dependency on `https://github.com/armenusapp/sdk`, `path: flutter`, pinned to a release tag. | Experimental; native device-toolchain validation is pending.       |
-| Swift              | Swift Package Manager, `https://github.com/armenusapp/sdk`, product `Armenus`.                   | iOS module compilation verified; device testing is still required. |
-| Android            | JitPack, `com.github.armenusapp:sdk:<tag>`.                                                      | Library and JVM tests verified; device testing is still required.  |
+| Platform           | Installation                                                                                     |
+| ------------------ | ------------------------------------------------------------------------------------------------ |
+| JavaScript / React | Obtain the matching `0.1.0` integration package archives. npm publication is pending.            |
+| React Native       | Obtain the core and React Native archives; install native dependencies in a native build.        |
+| Flutter            | Git dependency on `https://github.com/armenusapp/sdk`, `path: flutter`, pinned to a release tag. |
+| Swift              | Swift Package Manager, `https://github.com/armenusapp/sdk`, product `Armenus`.                   |
+| Android            | JitPack, `com.github.armenusapp:sdk:<tag>`.                                                      |
 
 Do not assume an npm install succeeds until the package is actually published.
 The `js/` folders contain source, not built npm distributions. Installing this

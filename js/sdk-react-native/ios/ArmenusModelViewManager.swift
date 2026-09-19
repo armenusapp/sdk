@@ -29,7 +29,7 @@ final class ArmenusModelViewBridge: ArmenusModelView {
 
   @objc var onModelLoad: RCTDirectEventBlock? {
     didSet {
-      super.onModelLoad = { [weak self] in
+      super.onLoad = { [weak self] in
         self?.onModelLoad?([:])
       }
     }
@@ -37,7 +37,7 @@ final class ArmenusModelViewBridge: ArmenusModelView {
 
   @objc var onModelError: RCTDirectEventBlock? {
     didSet {
-      super.onModelError = { [weak self] message in
+      super.onError = { [weak self] message in
         self?.onModelError?(["message": message])
       }
     }

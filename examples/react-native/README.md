@@ -7,16 +7,20 @@ A dish list and a detail screen where the dish can be placed on a real table.
 This SDK has native modules, so **Expo Go will not work** — it ships a fixed
 set of native code and cannot load ours. Use a development build:
 
+While npm publication is pending, install the matching integration archives:
+
 ```bash
-npm install
+npm install /path/to/armenus-sdk-core-0.1.0.tgz /path/to/armenus-sdk-react-native-0.1.0.tgz
 cp .env.example .env      # add your publishable key
 
 npx expo run:ios          # or: npx expo run:android
 ```
 
-For a bare React Native project the only extra step is Android: add
-`ArmenusPackage()` to your `MainApplication` package list. iOS is autolinked by
-CocoaPods.
+Both platforms use React Native autolinking. For a bare project, run `pod install`
+in `ios` and rebuild the native apps. Do not add a second `ArmenusPackage()` when
+Android autolinking is enabled. The Expo example sets Kotlin 2.0.21 through
+`expo-build-properties` and pins the Kotlin Gradle dependency with the included
+config plugin. Android also needs Java 17 and API 24 or later.
 
 ## What to look at
 

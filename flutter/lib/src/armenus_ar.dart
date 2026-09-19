@@ -2,20 +2,20 @@ import 'package:flutter/services.dart';
 
 /// The platform channel: AR handoff and the mesh cache.
 ///
-/// Deliberately thin. Neither platform needs a hand-written AR engine — iOS has
-/// AR Quick Look (which *is* ARKit: plane detection, real-world scale, people
-/// occlusion, contact shadows, the gestures users already know) and Android has
-/// Scene Viewer on ARCore. Both take a file and a size.
+/// Opens Apple's built-in Quick Look viewer on iOS and Google's Scene Viewer
+/// on Android. The SDK downloads and caches model files for these viewers.
 class ArmenusAr {
   static const MethodChannel _channel = MethodChannel('app.armenus/ar');
 
   /// Whether this handset can do AR at all.
   ///
-  /// Probes ARKit world-tracking support on iOS and ARCore availability on
-  /// Android — not the OS version, which answers neither question.
+  /// Checks AR world-tracking support on iOS. On Android, checks whether
+  /// Scene Viewer can open; the viewer can fall back to 3D without AR.
   static Future<bool> isArAvailable() async {
     try {
       return await _channel.invokeMethod<bool>('isArAvailable') ?? false;
+    } on MissingPluginException {
+      return false;
     } on PlatformException {
       // A failed probe is a "no". An AR button on a handset that cannot do AR
       // sends the user to the Play Store, which reads as a broken app.

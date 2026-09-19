@@ -1,10 +1,13 @@
 package app.armenus.sdk
 
 import android.content.Context
+import android.view.MotionEvent
 import android.view.Choreographer
 import android.widget.FrameLayout
 import io.github.sceneview.SceneView
 import io.github.sceneview.node.ModelNode
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -30,6 +33,8 @@ class ArmenusModelView(context: Context) : FrameLayout(context) {
   private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
   private var modelNode: ModelNode? = null
   private var currentSource: String? = null
+  private var loadJob: Job? = null
+  private var disposed = false
 
   var onModelLoad: (() -> Unit)? = null
   var onModelError: ((String) -> Unit)? = null
@@ -61,7 +66,11 @@ class ArmenusModelView(context: Context) : FrameLayout(context) {
     if (source.isEmpty() || source == currentSource) return
     currentSource = source
 
-    scope.launch {
+    loadJob?.cancel()
+    stopSpin()
+    modelNode?.let { sceneView.removeChildNode(it); it.destroy() }
+    modelNode = null
+    loadJob = scope.launch {
       try {
         /*
          * Fetch and parse off the main thread. A textured dish is a few MB and
@@ -75,25 +84,27 @@ class ArmenusModelView(context: Context) : FrameLayout(context) {
           } else {
             java.io.File(source)
           }
-          file.readBytes()
+          ArmenusGlb.prepare(file.readBytes())
         }
 
+        if (disposed || currentSource != source) return@launch
         val instance = sceneView.modelLoader.createModelInstance(
           java.nio.ByteBuffer.wrap(buffer),
         )
-        val node = ModelNode(modelInstance = instance).apply {
-          // Normalised to a unit bounding box so `cameraDistance` means the
-          // same thing for a coffee cup and a sharing platter. Real-world
-          // scale is applied by the AR viewer, not by the preview.
-          scaleToUnitCube()
-          centerOrigin()
-        }
+        val node = ModelNode(
+          modelInstance = instance,
+          autoAnimate = false,
+          scaleToUnits = 1.0f,
+          centerOrigin = io.github.sceneview.math.Position(0f, 0f, 0f),
+        )
 
         sceneView.addChildNode(node)
         modelNode = node
         applyCamera()
         if (autoRotate) startSpin()
         onModelLoad?.invoke()
+      } catch (error: CancellationException) {
+        throw error
       } catch (error: Throwable) {
         onModelError?.invoke(error.message ?: "Model failed to load")
       }
@@ -154,12 +165,28 @@ class ArmenusModelView(context: Context) : FrameLayout(context) {
     spinCallback = null
   }
 
+  override fun onInterceptTouchEvent(event: MotionEvent): Boolean = !interactionEnabled
+
+  override fun onTouchEvent(event: MotionEvent): Boolean = false
+
+  override fun onAttachedToWindow() {
+    super.onAttachedToWindow()
+    if (!disposed && autoRotate) startSpin()
+  }
+
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
-    // Filament holds native GPU resources that the GC will not reclaim, so an
-    // undestroyed SceneView per scrolled-past card leaks until the app dies.
+    // React Native can temporarily detach a view while recycling a list.
+    stopSpin()
+  }
+
+  fun dispose() {
+    if (disposed) return
+    disposed = true
     stopSpin()
     scope.cancel()
+    modelNode?.let { sceneView.removeChildNode(it); it.destroy() }
+    modelNode = null
     sceneView.destroy()
   }
 }

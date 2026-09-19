@@ -97,8 +97,7 @@ class _MenuScreenState extends State<MenuScreen> {
             if (menu.items.isEmpty) {
               return const _Problem(
                 title: 'No dishes with models yet',
-                detail:
-                    'A normal state, not an error — models are built after upload.',
+                detail: 'A normal state, not an error — models are built after upload.',
               );
             }
 
@@ -134,11 +133,11 @@ class _MenuScreenState extends State<MenuScreen> {
                   sliver: SliverGrid(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 12,
-                      crossAxisSpacing: 12,
-                      childAspectRatio: 0.78,
-                    ),
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 12,
+                          crossAxisSpacing: 12,
+                          childAspectRatio: 0.78,
+                        ),
                     delegate: SliverChildBuilderDelegate(
                       (context, index) => _Card(
                         item: menu.items[index],

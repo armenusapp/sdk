@@ -28,7 +28,7 @@ dependencies {
 ```
 
 Android 7.0 (API 24) and later, which is what Scene Viewer requires. The
-library adds **no permissions** to your manifest.
+library declares the normal `INTERNET` permission for menu and model downloads. It does not request camera access.
 
 ## Use
 
@@ -110,6 +110,6 @@ ArmenusModelView supports native layout, arLabel, interactionEnabled and its cal
 
 See the [cross-platform design guide](https://github.com/armenusapp/sdk/blob/main/docs/customization.md) and [developer documentation](https://developers.armenus.app).
 
-ArmenusModelView exposes accentColor for the AR button. The client accepts baseUrl, timeoutMs and retries; run its suspend methods from lifecycle-aware coroutines. The host app must declare android.permission.INTERNET for network requests.
+ArmenusModelView exposes accentColor for the AR button. The client accepts baseUrl, timeoutMs and retries; run its suspend methods from lifecycle-aware coroutines. The library manifest includes `android.permission.INTERNET` for network requests.
 
 [Complete Android / Kotlin setup guide](https://developers.armenus.app/kotlin).

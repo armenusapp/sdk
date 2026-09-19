@@ -20,7 +20,6 @@ SDK version, platform, reproduction steps and whether the error occurs with a
 published item. Do not put secret keys, private account data or full authenticated
 request headers in an issue.
 
-Native device validation remains required. React Native and Flutter are
-experimental; compiling TypeScript does not validate Swift, Kotlin or AR on a
-phone. See [errors](https://developers.armenus.app/errors) and
+For native apps, rebuild after adding or updating the SDK so its Swift and Kotlin
+code is included. Test camera AR on a supported phone. See [errors](https://developers.armenus.app/errors) and
 [formats](https://developers.armenus.app/formats) for the full reference.

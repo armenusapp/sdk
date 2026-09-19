@@ -66,12 +66,16 @@ class _ArmenusExampleState extends State<ArmenusExample> {
       ),
       home: _setupError != null
           ? _Setup(message: _setupError!)
-          : MenuScreen(
-              client: _client!,
-              merchantId: armenusMerchantId.isEmpty ? null : armenusMerchantId,
-              onSelect: (item) => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => DishScreen(item: item),
+          : Builder(
+              builder: (navigationContext) => MenuScreen(
+                client: _client!,
+                merchantId: armenusMerchantId.isEmpty
+                    ? null
+                    : armenusMerchantId,
+                onSelect: (item) => Navigator.of(navigationContext).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => DishScreen(item: item),
+                  ),
                 ),
               ),
             ),

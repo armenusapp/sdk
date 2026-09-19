@@ -2,7 +2,6 @@ package app.armenus.sdk
 
 import android.content.Intent
 import android.net.Uri
-import com.google.ar.core.ArCoreApk
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -30,39 +29,16 @@ class ArmenusArModule(private val reactContext: ReactApplicationContext) :
 
   private val io = Executors.newFixedThreadPool(2)
 
-  /**
-   * Whether this handset can do AR.
-   *
-   * `ArCoreApk.checkAvailability` covers both questions that matter — is the
-   * device on Google's supported list, and is ARCore actually installed. A
-   * version check answers neither, and an AR button on an unsupported handset
-   * opens the Play Store instead of the camera, which reads as a broken app.
-   *
-   * The transient states resolve asynchronously, so this polls briefly rather
-   * than reporting "no" for a device that is merely still deciding.
-   */
+  /** Checks whether the system Scene Viewer can handle the AR handoff. */
   @ReactMethod
   fun isArAvailable(promise: Promise) {
-    try {
-      val availability = ArCoreApk.getInstance().checkAvailability(reactContext)
-      if (availability.isTransient) {
-        io.execute {
-          var state = availability
-          var waited = 0
-          while (state.isTransient && waited < 2_000) {
-            Thread.sleep(200)
-            waited += 200
-            state = ArCoreApk.getInstance().checkAvailability(reactContext)
-          }
-          promise.resolve(state.isSupported)
-        }
-      } else {
-        promise.resolve(availability.isSupported)
-      }
-    } catch (error: Throwable) {
-      // A device without Play services throws rather than reporting false.
-      promise.resolve(false)
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://arvr.google.com/scene-viewer/1.0")).apply {
+      setPackage("com.google.ar.core")
     }
+    val available = runCatching {
+      intent.resolveActivity(reactContext.packageManager) != null
+    }.getOrDefault(false)
+    promise.resolve(available)
   }
 
   @ReactMethod

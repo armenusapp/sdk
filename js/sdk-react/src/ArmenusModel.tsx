@@ -138,6 +138,10 @@ export function ArmenusModel({
    */
   const viewerRef = useRef<ModelViewerElement | null>(null);
 
+  useEffect(() => {
+    setModelError(false);
+  }, [item?.model?.id, item?.model?.glbUrl]);
+
   const handleModelError = useCallback(() => setModelError(true), []);
   const handleEnterAr = useCallback(() => {
     if (item) onEnterAr?.(item);

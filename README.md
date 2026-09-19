@@ -21,7 +21,7 @@ Restaurant setup and dashboard guides: [docs.armenus.app](https://docs.armenus.a
 | Android (Kotlin) | `armenus` ([android/](./android)) | JitPack: `com.github.armenusapp:sdk:<tag>`                                | Filament, Scene Viewer          |
 | React (web)      | `@armenus/sdk-react`              | Matching core + React integration archives; npm pending                   | `<model-viewer>`                |
 | JavaScript       | `@armenus/sdk-core`               | Core integration archive; npm pending                                     | Bring your own `<model-viewer>` |
-| React Native     | `@armenus/sdk-react-native`       | Matching core + experimental native archives; npm pending                 | SceneKit / Filament             |
+| React Native     | `@armenus/sdk-react-native`       | Matching core + native integration archives; npm pending                 | SceneKit / Filament             |
 | Flutter          | `armenus` ([flutter/](./flutter)) | Git dependency: `url: https://github.com/armenusapp/sdk`, `path: flutter` | SceneKit / Filament             |
 
 Releases are tagged `v<version>`; every package in a tag shares that version.
@@ -43,14 +43,12 @@ model whose USDZ is not ready yet has **nothing to render at all**, so the
 preview shows the poster image, not only a missing AR button.
 `resolvePresentation()` encodes the platform rules. Browser inline 3D can render GLB even on iPhone; the native iOS USDZ requirement does not apply to web inline previews.
 
-## Status
+## Development checks
 
-| SDK                   | State                                                                        |
-| --------------------- | ---------------------------------------------------------------------------- |
-| Swift                 | Core builds and tests on macOS; iOS module compiles. Device testing pending. |
-| Android               | Library compiles; JVM unit tests pass. Device testing pending.               |
-| React and JavaScript  | Built and tested in the monorepo workspace.                                  |
-| React Native, Flutter | Complete sources, not yet compiled against a device toolchain.               |
+Client and capability tests cover API errors, platform format selection and model
+availability. Native integration tests cover model loading, caching and replacing
+a displayed dish. See each package README for local test commands. The repository
+CI builds the Swift and Android libraries and the Flutter example applications.
 
 ## Examples
 
