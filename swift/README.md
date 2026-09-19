@@ -110,3 +110,7 @@ Quick Look only runs on hardware. Pin an exact version until `1.0`.
 The SwiftUI ArmenusModel exposes arLabel, interactionEnabled, onEnterAR and onError. Use SwiftUI layout modifiers around the viewer. Its UIKit internals do not expose a complete theme object; surrounding layout and model framing are separate from internal button styling.
 
 See the [cross-platform design guide](https://github.com/armenusapp/sdk/blob/main/docs/customization.md) and [developer documentation](https://developers.armenus.app).
+
+UIKit ArmenusModelView exposes accentColor for the AR button; the SwiftUI wrapper does not forward it. The client accepts baseURL, timeout in seconds, retries and an injected URLSession.
+
+[Complete iOS / Swift setup guide](https://developers.armenus.app/swift).

@@ -12,7 +12,7 @@ automatically theme a custom SDK application.
 | React Native | Outer `style`, `arLabel`, `interactionEnabled`, `footer`, callbacks        | Internal stage, button and note use fixed styles.                        |
 | Flutter      | `arLabel`, `interactionEnabled`, `aspectRatio`, callbacks                  | No comprehensive palette, typography or slot API.                        |
 | Swift        | SwiftUI layout around `ArmenusModel`; `arLabel`, interaction, callbacks    | UIKit internals do not expose a full theme object.                       |
-| Android      | Native layout around `ArmenusModelView`; AR label and interaction controls | Built-in internal presentation is fixed; no cross-platform theme object. |
+| Android      | Native layout around `ArmenusModelView`; AR label, accent color and interaction controls | Stage and typography are fixed; no cross-platform theme object. |
 
 ## React example
 
@@ -105,3 +105,8 @@ when their controls fit your design. For a fully custom native experience,
 compose the documented data/capability/AR APIs with your own UI and validate it
 on devices. A complete native theme/slot API would require a future SDK change;
 it is not available merely by changing the hosted menu theme.
+
+UIKit and Android `ArmenusModelView` expose `accentColor` for the AR button.
+The SwiftUI `ArmenusModel` wrapper does not currently forward it. See the
+[iOS / Swift guide](https://developers.armenus.app/swift) and
+[Android / Kotlin guide](https://developers.armenus.app/kotlin).

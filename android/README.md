@@ -106,6 +106,10 @@ hardware with Google Play services. Pin an exact version until `1.0`.
 
 ## Design customization
 
-ArmenusModelView supports native layout, arLabel, interactionEnabled and its callbacks. The built-in stage and controls use fixed internal styling; there is no shared design-token API. Compose your own surrounding dish cards and menus.
+ArmenusModelView supports native layout, arLabel, interactionEnabled and its callbacks. The stage and typography use fixed internal styling; there is no shared design-token API. Compose your own surrounding dish cards and menus.
 
 See the [cross-platform design guide](https://github.com/armenusapp/sdk/blob/main/docs/customization.md) and [developer documentation](https://developers.armenus.app).
+
+ArmenusModelView exposes accentColor for the AR button. The client accepts baseUrl, timeoutMs and retries; run its suspend methods from lifecycle-aware coroutines. The host app must declare android.permission.INTERNET for network requests.
+
+[Complete Android / Kotlin setup guide](https://developers.armenus.app/kotlin).
