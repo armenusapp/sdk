@@ -60,13 +60,13 @@ client's initialiser throws if you try, because it would otherwise work.
 
 ## API
 
-| Method                                   | Returns                                                                                   |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `config()`                               | What this key can see. Call once at startup so a revoked key fails loudly.                |
-| `item(_:)`                               | One dish, by Armenus id.                                                                  |
-| `item(merchantID:externalRef:)`          | One dish, by **your** identifier, so you never store ours.                                |
-| `items(merchantID:withModel:limit:offset:)` | Every dish on a merchant. `withModel: true` filters to dishes with a ready model.      |
-| `items(ids:)`                            | Up to 50 dishes in one request.                                                           |
+| Method                                      | Returns                                                                           |
+| ------------------------------------------- | --------------------------------------------------------------------------------- |
+| `config()`                                  | What this key can see. Call once at startup so a revoked key fails loudly.        |
+| `item(_:)`                                  | One dish, by Armenus id.                                                          |
+| `item(merchantID:externalRef:)`             | One dish, by **your** identifier, so you never store ours.                        |
+| `items(merchantID:withModel:limit:offset:)` | Every dish on a merchant. `withModel: true` filters to dishes with a ready model. |
+| `items(ids:)`                               | Up to 50 dishes in one request.                                                   |
 
 Failures throw `ArmenusError`, which carries `status`, `code`, `isRetryable` and
 `isAuthError`. Retryable failures are retried with jittered backoff before you
@@ -86,7 +86,7 @@ the function returned.
 
 ## Why no ARKit code
 
-`QLPreviewController` in AR mode *is* ARKit: plane detection, real-world
+`QLPreviewController` in AR mode _is_ ARKit: plane detection, real-world
 scale, people occlusion, contact shadows and the gestures every iPhone user
 already knows from Safari and Messages. The SDK owns only what the system
 does not give you: the inline renderer and the disk cache that feeds both
@@ -104,3 +104,9 @@ permission in its own process.
 The core module builds and its tests pass on macOS; the iOS module compiles
 for the simulator. It has not yet been exercised on a physical iPhone, and AR
 Quick Look only runs on hardware. Pin an exact version until `1.0`.
+
+## Design customization
+
+The SwiftUI ArmenusModel exposes arLabel, interactionEnabled, onEnterAR and onError. Use SwiftUI layout modifiers around the viewer. Its UIKit internals do not expose a complete theme object; surrounding layout and model framing are separate from internal button styling.
+
+See the [cross-platform design guide](https://github.com/armenusapp/sdk/blob/main/docs/customization.md) and [developer documentation](https://developers.armenus.app).

@@ -2,9 +2,8 @@
 
 Framework-agnostic client for the Armenus embed API. **Zero runtime dependencies.**
 
-```bash
-npm install @armenus/sdk-core
-```
+npm publication is pending. Obtain the matching versioned integration archives.
+See the [installation guide](https://github.com/armenusapp/sdk/blob/main/docs/getting-started.md).
 
 Most people want [`@armenus/sdk-react`](../sdk-react) (web), [`@armenus/sdk-react-native`](../sdk-react-native), or the [Flutter package](../sdk-flutter). Use this directly for Vue, Svelte, plain JS, or a server-side render.
 
@@ -43,7 +42,7 @@ The rules are not symmetric and getting them wrong yields a blank canvas with no
 
 - **There is no cross-platform AR API.** WebXR, Scene Viewer and AR Quick Look are mutually exclusive; a device supports at most one.
 - **There is no cross-platform model format.** Quick Look and SceneKit read USDZ and cannot read glTF. Scene Viewer and Filament read GLB and cannot read USDZ. Every model is therefore stored as both, and the USDZ is produced asynchronously after upload.
-- **The consequence people miss:** on iOS a missing USDZ costs the _inline preview_ too, not just the AR button. There is nothing an iPhone can draw, so it falls back to the poster image.
+- **The consequence people miss:** on native iOS a missing USDZ costs the _inline preview_ too, not just the AR button. There is nothing an iPhone can draw, so it falls back to the poster image.
 
 ```ts
 const { inline, ar } = resolvePresentation({
@@ -59,3 +58,15 @@ const { inline, ar } = resolvePresentation({
 ## React
 
 React bindings live at `@armenus/sdk-core/react` — a separate entry point so the zero-dependency promise of the main entry stays true. React is an optional peer and is never resolved by a non-React consumer.
+
+## Design and integration documentation
+
+See [developer documentation](https://developers.armenus.app), the
+[design guide](https://github.com/armenusapp/sdk/blob/main/docs/customization.md), and
+[troubleshooting](https://github.com/armenusapp/sdk/blob/main/docs/troubleshooting.md).
+
+The core client is headless: build your own design in React, Vue, Svelte or plain
+JavaScript. `baseUrl`, `timeoutMs`, `retries` and `fetch` configure requests.
+`retries` counts all attempts including the first. Call `config()` before listing
+items, handle `ArmenusError`, and use `resolvePresentation` for rendering and AR
+fallbacks. Browser inline GLB works on iPhone; native iOS requires USDZ.

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Framework-agnostic client for the Armenus embed API. Zero runtime dependencies.",
   "license": "MIT",
-  "homepage": "https://armenus.app/docs",
+  "homepage": "https://developers.armenus.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/armenusapp/sdk.git",

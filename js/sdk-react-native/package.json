@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Native 3D and AR dish rendering for React Native. SceneKit + AR Quick Look on iOS, Filament + Scene Viewer on Android.",
   "license": "MIT",
-  "homepage": "https://armenus.app/docs",
+  "homepage": "https://developers.armenus.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/armenusapp/sdk.git",

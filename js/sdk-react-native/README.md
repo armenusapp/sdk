@@ -7,11 +7,8 @@ Native 3D and AR dish rendering for React Native. **No WebView.**
 | **iOS**     | SceneKit (`SCNView`), USDZ  | AR Quick Look (`QLPreviewController`) |
 | **Android** | Filament via SceneView, GLB | Scene Viewer intent                   |
 
-```bash
-# Published under the `experimental` dist-tag until validated on devices.
-npm install @armenus/sdk-react-native@experimental
-cd ios && pod install
-```
+npm publication is pending. Obtain the matching versioned integration archives.
+See the [installation guide](https://github.com/armenusapp/sdk/blob/main/docs/getting-started.md).
 
 Android: add `ArmenusPackage()` to your `MainApplication` package list.
 
@@ -58,4 +55,16 @@ SceneKit cannot open a GLB. So on iOS, a model whose USDZ conversion has not fin
 
 ## Status
 
-The TypeScript side builds and type-checks in the Armenus workspace. The Swift and Kotlin sources are complete but have **not been compiled or run** against a React Native toolchain, which is why the package is published under the `experimental` tag rather than `latest`. Pin the exact version, and expect device validation before `1.0`.
+The TypeScript side builds and type-checks in the Armenus workspace. The Swift and Kotlin sources are complete but have **not been compiled or run** against a React Native toolchain, and the planned npm release uses the `experimental` tag rather than `latest`. Pin the exact version, and expect device validation before `1.0`.
+
+## Design and integration documentation
+
+See [developer documentation](https://developers.armenus.app), the
+[design guide](https://github.com/armenusapp/sdk/blob/main/docs/customization.md), and
+[troubleshooting](https://github.com/armenusapp/sdk/blob/main/docs/troubleshooting.md).
+
+The component exposes outer `style`, `arLabel`, `interactionEnabled`, `footer`,
+`onEnterAr` and `onError`. The internal stage, button and note currently use fixed
+styles. Outer `style` does not theme those elements. A universal native theme
+object is not part of the API. Run CocoaPods for iOS in a native development build;
+this native module is not available in a stock Expo Go runtime.

@@ -103,3 +103,9 @@ does not give you: the inline renderer and the disk cache that feeds it.
 The library compiles and its JVM unit tests pass. It has not yet been
 exercised on a physical Android device, and Scene Viewer only runs on
 hardware with Google Play services. Pin an exact version until `1.0`.
+
+## Design customization
+
+ArmenusModelView supports native layout, arLabel, interactionEnabled and its callbacks. The built-in stage and controls use fixed internal styling; there is no shared design-token API. Compose your own surrounding dish cards and menus.
+
+See the [cross-platform design guide](https://github.com/armenusapp/sdk/blob/main/docs/customization.md) and [developer documentation](https://developers.armenus.app).

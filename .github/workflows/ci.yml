@@ -77,6 +77,6 @@ jobs:
           - Web and React Native: \`@armenus/sdk-core\`, \`@armenus/sdk-react\` and \`@armenus/sdk-react-native\` on npm.
           - Flutter: git dependency on this repository with \`path: flutter\`.
 
-          Documentation: https://armenus.app/docs
+          Documentation: https://developers.armenus.app
           EOF
           gh release create "$tag" aar/*.aar --title "$tag" --notes-file notes.md

@@ -73,7 +73,7 @@ publishing {
       pom {
         name.set("Armenus Android SDK")
         description.set("Render restaurant dishes in 3D and place them on a table in AR. Filament inline, Scene Viewer for AR.")
-        url.set("https://armenus.app/docs")
+        url.set("https://developers.armenus.app")
         licenses {
           license {
             name.set("MIT")

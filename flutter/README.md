@@ -43,3 +43,9 @@ The plugin's native code owns only what the system does not provide: the inline 
 ## Status
 
 The Dart and native sources are complete, but this package has **not been compiled or run** — see the repository's SDK notes. It needs a `flutter analyze`, a build against a real Flutter toolchain, and device testing before publication.
+
+## Design customization
+
+ArmenusModel exposes arLabel, interactionEnabled, aspectRatio, onEnterAr and onError. Compose your layout around the widget. A comprehensive palette, typography and slot API is not currently exposed; do not assume ThemeData changes every internal color.
+
+See the [cross-platform design guide](https://github.com/armenusapp/sdk/blob/main/docs/customization.md) and [developer documentation](https://developers.armenus.app).
