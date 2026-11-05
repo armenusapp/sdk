@@ -162,3 +162,34 @@
     }
   }
 }
+/* Expanded 3D hero: the photo stays compact until the viewer is requested. */
+.menu-surface[data-restaurant="zburgerhouse"] .mn-showcase-hero-model:has([data-ar-mode]) {
+  height: auto;
+  min-width: 0;
+  overflow: visible;
+}
+.menu-surface[data-restaurant="zburgerhouse"] .mn-showcase-hero-model .ar-stage {
+  aspect-ratio: auto;
+  height: clamp(280px, 65vw, 380px);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.menu-surface[data-restaurant="zburgerhouse"] .mn-showcase-hero-model .ar-button {
+  max-width: calc(100% - 24px);
+  white-space: normal;
+  text-align: center;
+  font-size: .875rem;
+}
+.menu-surface[data-restaurant="zburgerhouse"] .mn-showcase-hero-model .ar-note {
+  margin: 0;
+  padding: .5rem .75rem;
+}
+@media (max-width: 640px) {
+  .menu-surface[data-restaurant="zburgerhouse"] .mn-showcase-hero-model:has([data-ar-mode]) {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+  .menu-surface[data-restaurant="zburgerhouse"] .mn-showcase-hero:has([data-ar-mode]) .mn-showcase-hero-copy {
+    grid-column: 1 / -1;
+  }
+}
