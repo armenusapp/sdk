@@ -25,7 +25,7 @@
   "radius": "lg",
   "showPrices": true,
   "presentation": "showcase",
-  "categoryIcons": "none",
+  "categoryIcons": "playful",
   "modelLoading": "on-demand",
   "navigationGroups": [
     {
