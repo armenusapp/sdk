@@ -1,0 +1,164 @@
+/* Owner-specific overrides. Keep this scope when pasting into Appearance. */
+.menu-surface[data-restaurant="zburgerhouse"] {
+  .mn-showcase-header {
+    padding-block: 1rem;
+  }
+  .mn-showcase-logo,
+  .mn-footer-logo {
+    filter: brightness(0) saturate(100%) invert(27%) sepia(14%) saturate(1562%)
+      hue-rotate(91deg);
+  }
+  .mn-showcase-logo {
+    max-height: 56px;
+    width: auto;
+  }
+  .mn-showcase-hero {
+    min-height: 0;
+    padding-block: 1.25rem 2rem;
+    gap: 2rem;
+  }
+  .mn-showcase-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: -0.045em;
+    line-height: 1.06;
+  }
+  .mn-showcase-headline-accent {
+    color: var(--app-primary);
+    text-decoration: underline;
+    text-decoration-color: #e8c54b;
+    text-underline-offset: 0.16em;
+    text-decoration-thickness: 0.08em;
+  }
+  .mn-showcase-hero-star {
+    display: none;
+  }
+  .mn-showcase-hero-model,
+  .mn-showcase-hero-photo {
+    height: 240px;
+    min-height: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #eff2e8;
+  }
+  .mn-hero-model-request {
+    height: 100%;
+  }
+  .mn-hero-model-request img {
+    height: 100%;
+  }
+  .mn-hero-model-label,
+  .mn-hero-model-name {
+    display: none;
+  }
+  .mn-showcase-section .mn-list-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .mn-showcase-section .mn-dish {
+    display: grid;
+    grid-template-columns: 116px minmax(0, 1fr);
+    gap: 0.875rem;
+    padding: 0.75rem;
+    box-shadow: 0 3px 12px #213d2c05;
+  }
+  .mn-showcase-section .mn-figure {
+    width: 116px;
+    height: 116px;
+    aspect-ratio: 1;
+    align-self: start;
+  }
+  .mn-showcase-section .mn-dish-body {
+    padding: 0;
+    min-width: 0;
+  }
+  .mn-showcase-section .mn-dish-name {
+    font-size: 1rem;
+  }
+  .mn-showcase-section .mn-photo {
+    object-fit: cover;
+  }
+  .mn-filter-chip {
+    background: transparent;
+    color: var(--app-foreground);
+    border: 1px solid var(--app-border);
+  }
+  .mn-filter-chip[aria-pressed="true"] {
+    color: white;
+    background: var(--app-primary);
+    border-color: var(--app-primary);
+    box-shadow: 0 0 0 2px #27633f20;
+  }
+  .mn-filter-feedback {
+    padding-block: 0.75rem;
+  }
+  .mn-restaurant-info {
+    margin-top: 2.5rem;
+  }
+  .zbh-help {
+    max-width: 1100px;
+    margin: 1rem auto;
+    padding: 1rem;
+    border: 1px solid var(--app-border);
+    border-radius: 16px;
+    background: var(--app-card);
+  }
+  .zbh-help strong {
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .zbh-help div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .zbh-help button {
+    min-height: 44px;
+    padding: 0.5rem 0.875rem;
+    border-radius: 24px;
+    border: 1px solid var(--app-border);
+    background: var(--app-muted);
+    color: var(--app-primary);
+    cursor: pointer;
+  }
+  .zbh-help button:hover {
+    border-color: var(--app-primary);
+  }
+  @media (max-width: 640px) {
+    .mn-showcase-hero {
+      grid-template-columns: minmax(0, 1fr) 115px;
+      gap: 1rem;
+      padding-block: 0.5rem 1.5rem;
+    }
+    .mn-showcase-hero h1 {
+      font-size: 1.9rem;
+    }
+    .mn-showcase-hero-model,
+    .mn-showcase-hero-photo {
+      height: 140px;
+    }
+    .mn-showcase-hero-copy > p {
+      font-size: 0.85rem;
+    }
+    .mn-showcase-explore {
+      margin-top: 0.75rem;
+    }
+    .mn-hero-model-request span {
+      font-size: 0.7rem;
+      gap: 0.25rem;
+      bottom: 0.5rem;
+      padding: 0.4rem;
+      white-space: nowrap;
+    }
+    .mn-showcase-section .mn-list-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .mn-showcase-section .mn-dish {
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 0.75rem;
+    }
+    .mn-showcase-section .mn-figure {
+      width: 96px;
+      height: 104px;
+    }
+  }
+}

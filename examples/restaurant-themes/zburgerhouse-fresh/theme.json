@@ -1,0 +1,458 @@
+{
+  "hero": {
+    "headline": "What are you\ncraving?",
+    "sectionIntro": "A little of everything.\nA whole lot of flavour.",
+    "featuredItemId": "ddeddce0-be2f-47fe-afdc-354166837d15"
+  },
+  "mode": "light",
+  "fonts": {
+    "heading": "Karla",
+    "body": "Karla"
+  },
+  "colors": {
+    "primary": "#27633F",
+    "onPrimary": "#FFFFFF",
+    "secondary": "#3E7651",
+    "accent": "#755B10",
+    "background": "#FAF9F3",
+    "foreground": "#213D2C",
+    "muted": "#EFF2E8",
+    "mutedForeground": "#596358",
+    "card": "#FFFFFF",
+    "border": "#DDE3D6"
+  },
+  "layout": "grid",
+  "radius": "lg",
+  "showPrices": true,
+  "presentation": "showcase",
+  "categoryIcons": "none",
+  "modelLoading": "on-demand",
+  "navigationGroups": [
+    {
+      "id": "burgers",
+      "name": "Burgers",
+      "categoryIds": [
+        "ac086c87-8494-4a81-a23e-d362c27f9edf",
+        "1715e0ea-45b1-4ac8-a60b-d9c4beeba3fb",
+        "77f056eb-3e62-465e-9d32-f47b97daff4d",
+        "2ac2af6c-9b4d-4759-aba1-529b92c1c0c6"
+      ],
+      "translations": {
+        "ar": "\u0628\u0631\u063a\u0631",
+        "fr": "Burgers"
+      }
+    },
+    {
+      "id": "chicken",
+      "name": "Chicken",
+      "categoryIds": [
+        "319ac3ad-f24d-431c-acc5-2306491947b1",
+        "b8f73e18-caa4-41eb-aedc-019ef8f4309b"
+      ],
+      "translations": {
+        "ar": "\u062f\u062c\u0627\u062c",
+        "fr": "Poulet"
+      }
+    },
+    {
+      "id": "salads",
+      "name": "Salads",
+      "categoryIds": [
+        "9891e426-0c8d-465e-a8df-35537615181b",
+        "34f751fa-d827-4724-a6bb-713ebf2cd04a"
+      ],
+      "translations": {
+        "ar": "\u0633\u0644\u0637\u0627\u062a",
+        "fr": "Salades"
+      }
+    },
+    {
+      "id": "sides",
+      "name": "Sides",
+      "categoryIds": [
+        "1404d34f-370e-49ce-acf7-5ac5f2e0613a",
+        "fdc7ab5b-f0ae-41f4-a8f9-5a2df5b3ad26",
+        "a42818f0-7177-4f41-a413-284d34594b8a"
+      ],
+      "translations": {
+        "ar": "\u0645\u0642\u0628\u0644\u0627\u062a",
+        "fr": "Accompagnements"
+      }
+    },
+    {
+      "id": "drinks",
+      "name": "Drinks",
+      "categoryIds": [
+        "5092f471-95e0-413b-ae73-1ba022dc53ef",
+        "f6f164ab-31ce-427d-b8d1-17c74e04ee44",
+        "97e2e4b6-5cd7-4ba1-9aa9-5d9c40590a30",
+        "129aadf8-1974-4daf-b0f5-c3d08d6dd614",
+        "be61250d-d153-47ef-8a98-23923f5c78c9",
+        "ded61534-af20-44da-acdf-8503738a88df",
+        "da32f6c3-1121-4004-8d37-564731a0a191"
+      ],
+      "translations": {
+        "ar": "\u0645\u0634\u0631\u0648\u0628\u0627\u062a",
+        "fr": "Boissons"
+      }
+    },
+    {
+      "id": "more",
+      "name": "More",
+      "categoryIds": [
+        "5fa38adf-b388-46c1-a0c9-a44c551f25a5",
+        "e9a69210-c577-49ef-a0d3-43fa38a4fc92",
+        "5214cd43-f571-4c19-acc2-86cf60414c58",
+        "10ba9571-0086-4596-a9a6-5617b0fc6506",
+        "60a2b362-d7ab-4294-a79a-b68e73ca462d",
+        "fbe14e1f-2af6-4ff0-a8ea-6276a9c7c031",
+        "e7125856-e559-4859-a4d9-5fa40b2ce6e6",
+        "7b4d49b3-77be-41d9-ae11-1d406815ed31",
+        "a92a65a4-1fb7-4a73-a437-8f8d8f40efad",
+        "ef2082cb-301a-4831-acd7-004081cdd050",
+        "ebac2cbd-acd7-49b1-a516-9329f2dc79fa",
+        "599c4020-5862-4d54-a4f4-2d157084c784",
+        "63466abe-6f0b-4c6b-adcb-a72507747f8c",
+        "2f734617-4a26-4d75-b226-edb8d9c7b66e",
+        "6ef16d96-ebe4-4ca5-9ccd-214b02576f8e",
+        "480aa24f-1aa1-446a-9577-2c26ba18635a"
+      ],
+      "translations": {
+        "ar": "\u0627\u0644\u0645\u0632\u064a\u062f",
+        "fr": "Plus"
+      }
+    }
+  ],
+  "itemFamilies": [
+    {
+      "itemIds": [
+        "acb6cdf4-2dbd-4275-a94b-7b53af7fd917",
+        "702f0560-237a-468f-a29c-affeb2ddff8f"
+      ]
+    },
+    {
+      "itemIds": [
+        "23d76cbd-fff0-48f3-af2e-68a2a877191f",
+        "cd51cefc-a4b2-49b0-acf5-28e80fe9473e"
+      ]
+    },
+    {
+      "itemIds": [
+        "a946e71d-72c1-45bd-a56d-97f7a8bf71b7",
+        "271858b9-d352-4ab6-a546-d5492d466681"
+      ]
+    },
+    {
+      "itemIds": [
+        "7a11c8b9-f53e-4604-ae3e-6c2c6f31aefc",
+        "5e9afdbf-21fa-4fbc-ac9b-eefaeeb211ea"
+      ]
+    },
+    {
+      "itemIds": [
+        "b80f5db1-c549-4f52-a071-26a3a16c12e9",
+        "171e426f-da85-4fe0-afef-5fb37f5a00e1"
+      ]
+    },
+    {
+      "itemIds": [
+        "2bf26c66-fb14-4e26-a4aa-de0ffa1e36f4",
+        "7ca713f1-3556-46e0-abc8-e69ec450ca3c"
+      ]
+    },
+    {
+      "itemIds": [
+        "aa6cf855-036f-453e-a94c-a92e8d826f02",
+        "22776520-5bda-40d9-a835-1820bcb5e222"
+      ]
+    },
+    {
+      "itemIds": [
+        "34c444bc-3b2c-49ab-a685-018c4512585c",
+        "9db053ba-e9fa-411f-a5bc-a02ab96562e0"
+      ]
+    },
+    {
+      "itemIds": [
+        "dbef8843-4fcd-4f0a-acef-73895c64958d",
+        "d8d51f9d-ff02-4e4d-a950-42814940b956"
+      ]
+    },
+    {
+      "itemIds": [
+        "bec6b425-a5b6-4100-a505-88a336292967",
+        "e4bc32fb-83b8-4cbe-aa8c-3679b6e1c9bd"
+      ]
+    },
+    {
+      "itemIds": [
+        "63bfd1cc-b645-430b-afee-13a953a6ceec",
+        "6b1669d3-1a3b-439c-adf9-4e89e86efd07"
+      ]
+    },
+    {
+      "itemIds": [
+        "7c20df4b-e72f-425c-a353-4e6c94930e1f",
+        "4b217194-b914-4c89-a2e7-325ffac3bdae"
+      ]
+    },
+    {
+      "itemIds": [
+        "d061fc5d-51a1-4bab-a698-beccdbaf4511",
+        "65d4fc6b-3b7c-4a08-aec2-2ade3c6270f7"
+      ]
+    },
+    {
+      "itemIds": [
+        "9e0af951-5c7b-440b-aaea-d3f55e6a25c6",
+        "09ff9423-d3f9-4049-a0a5-2fc7d0c65110"
+      ]
+    },
+    {
+      "itemIds": [
+        "04db228a-0cfe-479a-a6e6-b1433ed4c384",
+        "911be050-e3bd-4697-a5f6-0d819ac79306"
+      ]
+    },
+    {
+      "itemIds": [
+        "76903c63-1ae0-4649-a344-6676e7a9e354",
+        "aaf7b84e-71e6-4a31-a7fa-10e1bd232e56"
+      ]
+    },
+    {
+      "itemIds": [
+        "47770bcb-2b14-4862-ac9d-5b8f931c0724",
+        "5c93b0b3-9981-4469-a997-073b6788a38e"
+      ]
+    },
+    {
+      "itemIds": [
+        "6d7164c0-c327-43aa-ac3e-dffccbe8eb61",
+        "343353fc-79af-4283-a3e7-87187adb6d3d"
+      ]
+    },
+    {
+      "itemIds": [
+        "adc52d72-e66c-4f22-a0eb-10efb86535f1",
+        "c1d214db-5608-49b1-aa22-0aedfd05bfb7"
+      ]
+    },
+    {
+      "itemIds": [
+        "5aaab6cd-ba64-4f88-8271-2ac63e395e73",
+        "1236250a-9a54-42c4-8708-9e7928e4f195"
+      ]
+    },
+    {
+      "itemIds": [
+        "76bdad80-1170-4292-a539-e7b6114cc919",
+        "e03d8181-b07e-40a7-a8b3-7a5c7a33d93b"
+      ]
+    },
+    {
+      "itemIds": [
+        "9eaf644b-c399-4517-a7dd-6e90fb29bba4",
+        "7019ff6c-f2b1-4c8c-bdc2-ffc9094e62a9"
+      ]
+    },
+    {
+      "itemIds": [
+        "a7fd9454-0369-4c42-a8aa-f347c165c08f",
+        "0e5aa522-ac1d-446c-878e-a9a4315e934c"
+      ]
+    },
+    {
+      "itemIds": [
+        "c744a2cb-c5f8-4b99-ae87-d1943de16279",
+        "e2854e8f-7b53-47ca-9ebb-669ebe47f97d"
+      ]
+    },
+    {
+      "itemIds": [
+        "99138f0d-fa53-431a-ab5f-384a679b93fe",
+        "8068a970-c705-42de-9feb-8391a0f9b676"
+      ]
+    },
+    {
+      "itemIds": [
+        "2dfe4307-84b3-4cde-abe0-c4207782bb2e",
+        "62bb6a43-9d9e-40c4-a884-fac20ccc68e2"
+      ]
+    },
+    {
+      "itemIds": [
+        "9752ea62-a78a-4b50-aac0-b2e5b0d04b1a",
+        "21331a56-aeda-4c63-b5d6-bca658908092"
+      ]
+    },
+    {
+      "itemIds": [
+        "3db1bb7f-0951-4cd5-ac0b-316904a218ae",
+        "fbdf9979-bf47-4e35-ae75-987a133f8ebc"
+      ]
+    },
+    {
+      "itemIds": [
+        "3b6cac93-aade-4e52-a7ba-9c9427a4853d",
+        "165e59b1-cc48-4f28-aa30-be1d1a68d2cc"
+      ]
+    },
+    {
+      "itemIds": [
+        "9bda5c52-07f7-41ef-a191-a805f64b5180",
+        "32404865-81fa-46b9-a0c8-e7416fc6f1c5"
+      ]
+    },
+    {
+      "itemIds": [
+        "d792f288-edc9-41bf-a43b-f086cf0b8dae",
+        "1cc10fdc-4ed5-44f4-b1a0-a85d26ac9d32"
+      ]
+    },
+    {
+      "itemIds": [
+        "c2454754-d85e-4790-a307-dcec3c10b594",
+        "4d2534c1-ec6c-4e82-b4f6-279b4b76ad18"
+      ]
+    },
+    {
+      "itemIds": [
+        "6829fb4d-3991-439d-a8d6-3cfc49744e14",
+        "142b3d08-a941-42b6-9d91-b5cc3a7cced3"
+      ]
+    },
+    {
+      "itemIds": [
+        "38af43d5-7dfe-4c7f-a033-268844c02dd6",
+        "fdf095e5-4886-45a3-a066-e73c91767428"
+      ]
+    },
+    {
+      "itemIds": [
+        "09861450-cd24-48c1-ac0e-c9353930c2fb",
+        "e714eba2-63b3-49dd-bd60-d70de15cc1bd"
+      ]
+    },
+    {
+      "itemIds": [
+        "bab7e9db-80f4-4e67-a623-a61ba597f50d",
+        "cf5a8293-9bcc-4649-986c-f9b9ebfbaf93"
+      ]
+    },
+    {
+      "itemIds": [
+        "62671e1a-159f-437a-ae09-f9ebd91538ed",
+        "4361ca58-14d7-4fb2-ae43-e4a0c008692b"
+      ]
+    },
+    {
+      "itemIds": [
+        "ddeddce0-be2f-47fe-afdc-354166837d15",
+        "255f2fb8-0b41-49a5-b26b-0e17950cd9ed"
+      ]
+    },
+    {
+      "itemIds": [
+        "e4db02a3-790f-4321-a4ca-eaa20c34375f",
+        "3072dcec-fa52-47cf-94a4-257d933a6482"
+      ]
+    },
+    {
+      "itemIds": [
+        "a50587f0-87ce-426f-a86b-92d6ba52ae54",
+        "2271bc74-b63a-4ccb-a447-c34dabe64beb"
+      ]
+    },
+    {
+      "itemIds": [
+        "ec64a135-eb36-4564-a9cc-012fb0b2a343",
+        "c75feb32-680e-4701-a039-c61941beecf3"
+      ]
+    },
+    {
+      "itemIds": [
+        "2ef2eca3-bbd0-48dc-a0c0-f66c2e235aaf",
+        "06cda4e0-4d92-4ad5-a325-57892f3d4cae"
+      ]
+    },
+    {
+      "itemIds": [
+        "0917893a-3b5c-4527-ac60-fa5f91e59876",
+        "47bb19d0-0b2f-4137-b8c5-1c30fa8405e2"
+      ]
+    },
+    {
+      "itemIds": [
+        "cea043ba-1d25-4d85-ab49-9b6a4d047f11",
+        "06c4d4c8-2b53-41b8-8d92-f507936d686a"
+      ]
+    },
+    {
+      "itemIds": [
+        "2db14974-cc83-4e9f-a676-6a8928638f0b",
+        "37be5b2f-a9dc-49eb-b5a9-6bda1e68cfdd"
+      ]
+    },
+    {
+      "itemIds": [
+        "0a6220fb-3322-40c6-af69-cfc4c5bcdf3b",
+        "2fd4139f-b520-4e83-8729-294fce8bb500"
+      ]
+    },
+    {
+      "itemIds": [
+        "0320df08-9712-4adb-ae3f-7950201113ff",
+        "85c171f7-23e8-40b5-a053-226442029c0b"
+      ]
+    },
+    {
+      "itemIds": [
+        "e323c685-72fd-4d05-adb8-e1baaeee02d0",
+        "8c1ab680-e265-4aac-a8f3-13843a0d8768"
+      ]
+    },
+    {
+      "itemIds": [
+        "db4ea781-9214-402f-a53a-cad9a0731caa",
+        "1f5228cb-a46d-40f9-92fc-0c9f3c853f9d"
+      ]
+    },
+    {
+      "itemIds": [
+        "18bfc078-36f7-48b0-ae40-2172b521bfed",
+        "d08c8414-c53a-4b33-bf68-60233895db15"
+      ]
+    },
+    {
+      "itemIds": [
+        "abad3de6-836d-4cce-a3b5-a308057e40c6",
+        "2b536b01-5b76-4dc9-93b4-7371e9882c83"
+      ]
+    },
+    {
+      "itemIds": [
+        "6a4476c9-e8d0-4b46-aaa3-ffa1102a4a80",
+        "b9ddae40-c1c8-459e-bb32-777e00d8267d"
+      ]
+    },
+    {
+      "itemIds": [
+        "325926d4-1e7e-412e-a389-18c8e0d27adb",
+        "ee11cf24-99a7-4778-81d3-c6c00e747a41"
+      ]
+    },
+    {
+      "itemIds": [
+        "14943f5f-b0f8-4ae6-afe7-f86938f7c872",
+        "e1429d29-cd0b-4aea-8762-43fed07b1230"
+      ]
+    },
+    {
+      "itemIds": [
+        "d4992361-9539-4e76-8bbf-d4c37a4841b0",
+        "dfa7db47-40c6-4637-832b-aa5cf72479fa"
+      ]
+    }
+  ]
+}

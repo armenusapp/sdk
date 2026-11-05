@@ -1,0 +1,827 @@
+[
+  {
+    "category": "Healthy Salads",
+    "options": [
+      {
+        "id": "acb6cdf4-2dbd-4275-a94b-7b53af7fd917",
+        "name": "Berry Kale",
+        "priceCents": 1225
+      },
+      {
+        "id": "702f0560-237a-468f-a29c-affeb2ddff8f",
+        "name": "1/2 Berry Kale",
+        "priceCents": 675
+      }
+    ]
+  },
+  {
+    "category": "Healthy Salads",
+    "options": [
+      {
+        "id": "23d76cbd-fff0-48f3-af2e-68a2a877191f",
+        "name": "Cheese, Nuts & Berries",
+        "priceCents": 1400
+      },
+      {
+        "id": "cd51cefc-a4b2-49b0-acf5-28e80fe9473e",
+        "name": "1/2 Cheese, Nuts & Berries",
+        "priceCents": 775
+      }
+    ]
+  },
+  {
+    "category": "Healthy Salads",
+    "options": [
+      {
+        "id": "a946e71d-72c1-45bd-a56d-97f7a8bf71b7",
+        "name": "Chicky Pineapples",
+        "priceCents": 1050
+      },
+      {
+        "id": "271858b9-d352-4ab6-a546-d5492d466681",
+        "name": "1/2 Chicky Pineapples",
+        "priceCents": 675
+      }
+    ]
+  },
+  {
+    "category": "Healthy Salads",
+    "options": [
+      {
+        "id": "7a11c8b9-f53e-4604-ae3e-6c2c6f31aefc",
+        "name": "Seaside Fusion",
+        "priceCents": 1775
+      },
+      {
+        "id": "5e9afdbf-21fa-4fbc-ac9b-eefaeeb211ea",
+        "name": "1/2 Seaside Fusion",
+        "priceCents": 1000
+      }
+    ]
+  },
+  {
+    "category": "Healthy Salads",
+    "options": [
+      {
+        "id": "b80f5db1-c549-4f52-a071-26a3a16c12e9",
+        "name": "Turkey Tango Bliss",
+        "priceCents": 1725
+      },
+      {
+        "id": "171e426f-da85-4fe0-afef-5fb37f5a00e1",
+        "name": "1/2 Turkey Tango Bliss",
+        "priceCents": 950
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "2bf26c66-fb14-4e26-a4aa-de0ffa1e36f4",
+        "name": "1/2 Burger House Salad",
+        "priceCents": 775
+      },
+      {
+        "id": "7ca713f1-3556-46e0-abc8-e69ec450ca3c",
+        "name": "Burger House Salad",
+        "priceCents": 1225
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "aa6cf855-036f-453e-a94c-a92e8d826f02",
+        "name": "Chef Salad",
+        "priceCents": 1000
+      },
+      {
+        "id": "22776520-5bda-40d9-a835-1820bcb5e222",
+        "name": "1/2 Chef Salad",
+        "priceCents": 550
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "34c444bc-3b2c-49ab-a685-018c4512585c",
+        "name": "Chicken Caesar Salad",
+        "priceCents": 1225
+      },
+      {
+        "id": "9db053ba-e9fa-411f-a5bc-a02ab96562e0",
+        "name": "1/2 Chicken Caesar Salad",
+        "priceCents": 675
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "dbef8843-4fcd-4f0a-acef-73895c64958d",
+        "name": "Crab Salad",
+        "priceCents": 1100
+      },
+      {
+        "id": "d8d51f9d-ff02-4e4d-a950-42814940b956",
+        "name": "1/2 Crab Salad",
+        "priceCents": 675
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "bec6b425-a5b6-4100-a505-88a336292967",
+        "name": "Crispy Chicken Salad",
+        "priceCents": 1000
+      },
+      {
+        "id": "e4bc32fb-83b8-4cbe-aa8c-3679b6e1c9bd",
+        "name": "1/2 Crispy Chicken Salad",
+        "priceCents": 377
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "63bfd1cc-b645-430b-afee-13a953a6ceec",
+        "name": "Greek Salad",
+        "priceCents": 775
+      },
+      {
+        "id": "6b1669d3-1a3b-439c-adf9-4e89e86efd07",
+        "name": "1/2 Greek Salad",
+        "priceCents": 550
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "7c20df4b-e72f-425c-a353-4e6c94930e1f",
+        "name": "Halloumi Salad",
+        "priceCents": 1175
+      },
+      {
+        "id": "4b217194-b914-4c89-a2e7-325ffac3bdae",
+        "name": "1/2 Halloumi Salad",
+        "priceCents": 675
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "d061fc5d-51a1-4bab-a698-beccdbaf4511",
+        "name": "Kale Quinoa",
+        "priceCents": 900
+      },
+      {
+        "id": "65d4fc6b-3b7c-4a08-aec2-2ade3c6270f7",
+        "name": "1/2 Kale Quinoa",
+        "priceCents": 550
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "9e0af951-5c7b-440b-aaea-d3f55e6a25c6",
+        "name": "1/2 Kale Quinoa Chicken",
+        "priceCents": 675
+      },
+      {
+        "id": "09ff9423-d3f9-4049-a0a5-2fc7d0c65110",
+        "name": "Kale Quinoa Chicken",
+        "priceCents": 1100
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "04db228a-0cfe-479a-a6e6-b1433ed4c384",
+        "name": "Season Salad",
+        "priceCents": 900
+      },
+      {
+        "id": "911be050-e3bd-4697-a5f6-0d819ac79306",
+        "name": "1/2 Season Salad",
+        "priceCents": 550
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "76903c63-1ae0-4649-a344-6676e7a9e354",
+        "name": "Steak Salad",
+        "priceCents": 1450
+      },
+      {
+        "id": "aaf7b84e-71e6-4a31-a7fa-10e1bd232e56",
+        "name": "1/2 Steak Salad",
+        "priceCents": 900
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "47770bcb-2b14-4862-ac9d-5b8f931c0724",
+        "name": "Tuna Pasta Salad",
+        "priceCents": 1000
+      },
+      {
+        "id": "5c93b0b3-9981-4469-a997-073b6788a38e",
+        "name": "1/2 Tuna Pasta Salad",
+        "priceCents": 550
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "6d7164c0-c327-43aa-ac3e-dffccbe8eb61",
+        "name": "Veggie Quinoa",
+        "priceCents": 900
+      },
+      {
+        "id": "343353fc-79af-4283-a3e7-87187adb6d3d",
+        "name": "1/2 Veggie Quinoa",
+        "priceCents": 550
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "adc52d72-e66c-4f22-a0eb-10efb86535f1",
+        "name": "White Curly Garden",
+        "priceCents": 775
+      },
+      {
+        "id": "c1d214db-5608-49b1-aa22-0aedfd05bfb7",
+        "name": "1/2 White Curly Garden",
+        "priceCents": 450
+      }
+    ]
+  },
+  {
+    "category": "The Fresh Salad",
+    "options": [
+      {
+        "id": "5aaab6cd-ba64-4f88-8271-2ac63e395e73",
+        "name": "1/2 Rocca Salad",
+        "priceCents": 550
+      },
+      {
+        "id": "1236250a-9a54-42c4-8708-9e7928e4f195",
+        "name": "Rocca Salad",
+        "priceCents": 900
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "76bdad80-1170-4292-a539-e7b6114cc919",
+        "name": "All Mighty Cheese Burger",
+        "priceCents": 1225
+      },
+      {
+        "id": "e03d8181-b07e-40a7-a8b3-7a5c7a33d93b",
+        "name": "All Mighty Cheese Burger combo",
+        "priceCents": 1650
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "9eaf644b-c399-4517-a7dd-6e90fb29bba4",
+        "name": "Bacon House Burger Sandwich",
+        "priceCents": 1100
+      },
+      {
+        "id": "7019ff6c-f2b1-4c8c-bdc2-ffc9094e62a9",
+        "name": "Bacon House Burger combo",
+        "priceCents": 1550
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "a7fd9454-0369-4c42-a8aa-f347c165c08f",
+        "name": "BBQ Pepperoni Burger Sandwich",
+        "priceCents": 1050
+      },
+      {
+        "id": "0e5aa522-ac1d-446c-878e-a9a4315e934c",
+        "name": "Bbq Pepperoni Burger combo",
+        "priceCents": 1500
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "c744a2cb-c5f8-4b99-ae87-d1943de16279",
+        "name": "Biggy House Burger Sandwich",
+        "priceCents": 1450
+      },
+      {
+        "id": "e2854e8f-7b53-47ca-9ebb-669ebe47f97d",
+        "name": "Biggy House Burger combo",
+        "priceCents": 1875
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "99138f0d-fa53-431a-ab5f-384a679b93fe",
+        "name": "Boogey Burger Beef Sandwich",
+        "priceCents": 2000
+      },
+      {
+        "id": "8068a970-c705-42de-9feb-8391a0f9b676",
+        "name": "Boogey Burger Beef combo",
+        "priceCents": 2425
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "2dfe4307-84b3-4cde-abe0-c4207782bb2e",
+        "name": "Cheese At Heart Burger Sandwich",
+        "priceCents": 1000
+      },
+      {
+        "id": "62bb6a43-9d9e-40c4-a884-fac20ccc68e2",
+        "name": "Cheese At Heart Burger combo",
+        "priceCents": 1450
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "9752ea62-a78a-4b50-aac0-b2e5b0d04b1a",
+        "name": "Cheese Burger Sandwich",
+        "priceCents": 775
+      },
+      {
+        "id": "21331a56-aeda-4c63-b5d6-bca658908092",
+        "name": "Cheese Burger combo",
+        "priceCents": 1225
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "3db1bb7f-0951-4cd5-ac0b-316904a218ae",
+        "name": "Classic Burger Sandwich",
+        "priceCents": 700
+      },
+      {
+        "id": "fbdf9979-bf47-4e35-ae75-987a133f8ebc",
+        "name": "Classic Burger combo",
+        "priceCents": 1075
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "3b6cac93-aade-4e52-a7ba-9c9427a4853d",
+        "name": "Deluxe Burger Sandwich",
+        "priceCents": 1000
+      },
+      {
+        "id": "165e59b1-cc48-4f28-aa30-be1d1a68d2cc",
+        "name": "Deluxe Burger combo",
+        "priceCents": 1450
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "9bda5c52-07f7-41ef-a191-a805f64b5180",
+        "name": "Mexican House Burger Sandwich",
+        "priceCents": 1000
+      },
+      {
+        "id": "32404865-81fa-46b9-a0c8-e7416fc6f1c5",
+        "name": "Mexican House Burger combo",
+        "priceCents": 1450
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "d792f288-edc9-41bf-a43b-f086cf0b8dae",
+        "name": "Mozzarella Beef Burger Sandwich",
+        "priceCents": 1100
+      },
+      {
+        "id": "1cc10fdc-4ed5-44f4-b1a0-a85d26ac9d32",
+        "name": "Mozzarella Beef Burger combo",
+        "priceCents": 1550
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "c2454754-d85e-4790-a307-dcec3c10b594",
+        "name": "Swiss Mushroom Burger Sandwich",
+        "priceCents": 1000
+      },
+      {
+        "id": "4d2534c1-ec6c-4e82-b4f6-279b4b76ad18",
+        "name": "Swiss Mushroom Burger combo",
+        "priceCents": 1450
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "6829fb4d-3991-439d-a8d6-3cfc49744e14",
+        "name": "Veggie Burger Sandwich",
+        "priceCents": 550
+      },
+      {
+        "id": "142b3d08-a941-42b6-9d91-b5cc3a7cced3",
+        "name": "Veggie Burger combo",
+        "priceCents": 1000
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "38af43d5-7dfe-4c7f-a033-268844c02dd6",
+        "name": "Z Angus House Sandwich",
+        "priceCents": 1650
+      },
+      {
+        "id": "fdf095e5-4886-45a3-a066-e73c91767428",
+        "name": "Z Angus House combo",
+        "priceCents": 2100
+      }
+    ]
+  },
+  {
+    "category": "The Authentic Beef Burger",
+    "options": [
+      {
+        "id": "09861450-cd24-48c1-ac0e-c9353930c2fb",
+        "name": "Z Lebanese Burger Sandwich",
+        "priceCents": 825
+      },
+      {
+        "id": "e714eba2-63b3-49dd-bd60-d70de15cc1bd",
+        "name": "Z Lebanese Burger combo",
+        "priceCents": 1275
+      }
+    ]
+  },
+  {
+    "category": "Authentic Chicken Burger",
+    "options": [
+      {
+        "id": "bab7e9db-80f4-4e67-a623-a61ba597f50d",
+        "name": "Cheesy Chicken Burger",
+        "priceCents": 825
+      },
+      {
+        "id": "cf5a8293-9bcc-4649-986c-f9b9ebfbaf93",
+        "name": "Cheesy Chicken Burger combo",
+        "priceCents": 1275
+      }
+    ]
+  },
+  {
+    "category": "Authentic Chicken Burger",
+    "options": [
+      {
+        "id": "62671e1a-159f-437a-ae09-f9ebd91538ed",
+        "name": "Chicken Breast Burger Sandwich",
+        "priceCents": 550
+      },
+      {
+        "id": "4361ca58-14d7-4fb2-ae43-e4a0c008692b",
+        "name": "Chicken Breast Burger combo",
+        "priceCents": 1000
+      }
+    ]
+  },
+  {
+    "category": "Authentic Chicken Burger",
+    "options": [
+      {
+        "id": "ddeddce0-be2f-47fe-afdc-354166837d15",
+        "name": "Crispy Chicken Burger Sandwich",
+        "priceCents": 725
+      },
+      {
+        "id": "255f2fb8-0b41-49a5-b26b-0e17950cd9ed",
+        "name": "Crispy Chicken Burger combo",
+        "priceCents": 1175
+      }
+    ]
+  },
+  {
+    "category": "Authentic Chicken Burger",
+    "options": [
+      {
+        "id": "e4db02a3-790f-4321-a4ca-eaa20c34375f",
+        "name": "Med Burger Sandwich",
+        "priceCents": 725
+      },
+      {
+        "id": "3072dcec-fa52-47cf-94a4-257d933a6482",
+        "name": "Med Burger combo",
+        "priceCents": 1175
+      }
+    ]
+  },
+  {
+    "category": "Authentic Chicken Burger",
+    "options": [
+      {
+        "id": "a50587f0-87ce-426f-a86b-92d6ba52ae54",
+        "name": "Mozzarella Chicken Burger Sandwich",
+        "priceCents": 1000
+      },
+      {
+        "id": "2271bc74-b63a-4ccb-a447-c34dabe64beb",
+        "name": "Mozzarella Chicken Burger combo",
+        "priceCents": 1450
+      }
+    ]
+  },
+  {
+    "category": "Burger Characters",
+    "options": [
+      {
+        "id": "ec64a135-eb36-4564-a9cc-012fb0b2a343",
+        "name": "Angry B",
+        "priceCents": 1450
+      },
+      {
+        "id": "c75feb32-680e-4701-a039-c61941beecf3",
+        "name": "Angry B combo",
+        "priceCents": 1875
+      }
+    ]
+  },
+  {
+    "category": "Burger Characters",
+    "options": [
+      {
+        "id": "2ef2eca3-bbd0-48dc-a0c0-f66c2e235aaf",
+        "name": "Chubby",
+        "priceCents": 1825
+      },
+      {
+        "id": "06cda4e0-4d92-4ad5-a325-57892f3d4cae",
+        "name": "Chubby combo",
+        "priceCents": 2275
+      }
+    ]
+  },
+  {
+    "category": "Burger Characters",
+    "options": [
+      {
+        "id": "0917893a-3b5c-4527-ac60-fa5f91e59876",
+        "name": "Classy B",
+        "priceCents": 1050
+      },
+      {
+        "id": "47bb19d0-0b2f-4137-b8c5-1c30fa8405e2",
+        "name": "Classy B combo",
+        "priceCents": 1500
+      }
+    ]
+  },
+  {
+    "category": "Burger Characters",
+    "options": [
+      {
+        "id": "cea043ba-1d25-4d85-ab49-9b6a4d047f11",
+        "name": "Double Trouble Smash",
+        "priceCents": 1225
+      },
+      {
+        "id": "06c4d4c8-2b53-41b8-8d92-f507936d686a",
+        "name": "Double Trouble Smash combo",
+        "priceCents": 1650
+      }
+    ]
+  },
+  {
+    "category": "Burger Characters",
+    "options": [
+      {
+        "id": "2db14974-cc83-4e9f-a676-6a8928638f0b",
+        "name": "Enigma Wagyu Burger",
+        "priceCents": 3250
+      },
+      {
+        "id": "37be5b2f-a9dc-49eb-b5a9-6bda1e68cfdd",
+        "name": "Enigma Wagyu Burger combo",
+        "priceCents": 3700
+      }
+    ]
+  },
+  {
+    "category": "Burger Characters",
+    "options": [
+      {
+        "id": "0a6220fb-3322-40c6-af69-cfc4c5bcdf3b",
+        "name": "Fawda",
+        "priceCents": 1725
+      },
+      {
+        "id": "2fd4139f-b520-4e83-8729-294fce8bb500",
+        "name": "Fawda combo",
+        "priceCents": 2150
+      }
+    ]
+  },
+  {
+    "category": "Burger Characters",
+    "options": [
+      {
+        "id": "0320df08-9712-4adb-ae3f-7950201113ff",
+        "name": "Lover",
+        "priceCents": 2325
+      },
+      {
+        "id": "85c171f7-23e8-40b5-a053-226442029c0b",
+        "name": "Lover combo",
+        "priceCents": 2750
+      }
+    ]
+  },
+  {
+    "category": "Burger Characters",
+    "options": [
+      {
+        "id": "e323c685-72fd-4d05-adb8-e1baaeee02d0",
+        "name": "Muscle Hustle",
+        "priceCents": 1325
+      },
+      {
+        "id": "8c1ab680-e265-4aac-a8f3-13843a0d8768",
+        "name": "Muscle Hustle combo",
+        "priceCents": 1775
+      }
+    ]
+  },
+  {
+    "category": "Burger Characters",
+    "options": [
+      {
+        "id": "db4ea781-9214-402f-a53a-cad9a0731caa",
+        "name": "Triple Double Smash",
+        "priceCents": 2425
+      },
+      {
+        "id": "1f5228cb-a46d-40f9-92fc-0c9f3c853f9d",
+        "name": "Triple Double Smash combo",
+        "priceCents": 2875
+      }
+    ]
+  },
+  {
+    "category": "Burger Characters",
+    "options": [
+      {
+        "id": "18bfc078-36f7-48b0-ae40-2172b521bfed",
+        "name": "Truffle Burger",
+        "priceCents": 2000
+      },
+      {
+        "id": "d08c8414-c53a-4b33-bf68-60233895db15",
+        "name": "Truffle Burger combo",
+        "priceCents": 2425
+      }
+    ]
+  },
+  {
+    "category": "Appealing Sub Sandwiches",
+    "options": [
+      {
+        "id": "abad3de6-836d-4cce-a3b5-a308057e40c6",
+        "name": "American Taouk",
+        "priceCents": 675
+      },
+      {
+        "id": "2b536b01-5b76-4dc9-93b4-7371e9882c83",
+        "name": "American Taouk combo",
+        "priceCents": 1100
+      }
+    ]
+  },
+  {
+    "category": "Appealing Sub Sandwiches",
+    "options": [
+      {
+        "id": "6a4476c9-e8d0-4b46-aaa3-ffa1102a4a80",
+        "name": "Classy Chicken Sub",
+        "priceCents": 550
+      },
+      {
+        "id": "b9ddae40-c1c8-459e-bb32-777e00d8267d",
+        "name": "Classy Chicken Sub combo",
+        "priceCents": 1000
+      }
+    ]
+  },
+  {
+    "category": "Lent Menu",
+    "options": [
+      {
+        "id": "325926d4-1e7e-412e-a389-18c8e0d27adb",
+        "name": "Crunchy Fishy Fish Sandwich",
+        "priceCents": 675
+      },
+      {
+        "id": "ee11cf24-99a7-4778-81d3-c6c00e747a41",
+        "name": "Crunchy Fishy Fish Combo",
+        "priceCents": 1000
+      }
+    ]
+  },
+  {
+    "category": "Lent Menu",
+    "options": [
+      {
+        "id": "14943f5f-b0f8-4ae6-afe7-f86938f7c872",
+        "name": "Eastern Fish",
+        "priceCents": 625
+      },
+      {
+        "id": "e1429d29-cd0b-4aea-8762-43fed07b1230",
+        "name": "Eastern Fish Combo",
+        "priceCents": 950
+      }
+    ]
+  },
+  {
+    "category": "Lent Menu",
+    "options": [
+      {
+        "id": "d4992361-9539-4e76-8bbf-d4c37a4841b0",
+        "name": "Fajita Fish",
+        "priceCents": 625
+      },
+      {
+        "id": "dfa7db47-40c6-4637-832b-aa5cf72479fa",
+        "name": "Fajita Fish combo",
+        "priceCents": 1050
+      }
+    ]
+  }
+]
